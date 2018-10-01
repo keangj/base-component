@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/keangj/base-component/issues"
   },
-  "homepage": "https://github.com/keangj/base-component#readme"
+  "homepage": "https://github.com/keangj/base-component#readme",
+  "dependencies": {
+    "vue": "^2.5.17"
+  }
 }
