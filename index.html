@@ -2,7 +2,8 @@
 <html lang="zh-Hans">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>base component</title>
   <style>
@@ -11,6 +12,7 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     :root {
       --border-color: #999;
       --border-color-hover: #666;
@@ -25,8 +27,17 @@
 </head>
 <body>
 <div id="app">
-  <b-button></b-button>
+  <b-button icon="settings">
+    提交
+  </b-button>
+  <b-button icon="download" icon-position="right">
+    提交
+  </b-button>
+  <b-button icon="down">
+    提交
+  </b-button>
 </div>
 <script src="./src/app.js"></script>
+<script src="//at.alicdn.com/t/font_860479_nnem9z1789.js"></script>
 </body>
 </html>
