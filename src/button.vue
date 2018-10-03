@@ -1,6 +1,19 @@
 <template>
-  <button class="b-button" :class="{[`icon-${iconPosition}`]: true}">
-    <b-icon v-if="icon" class="icon loading" :name="icon"></b-icon>
+  <button
+    class="b-button"
+    :class="{[`icon-${iconPosition}`]: true}"
+    @click="$emit('click')"
+  >
+    <b-icon
+      v-if="icon && !loading"
+      class="icon"
+      :name="icon"
+    ></b-icon>
+    <b-icon
+      v-if="loading"
+      class="loading icon"
+      name="loading"
+    ></b-icon>
     <div class="b-button-content">
       <slot></slot>
     </div>
@@ -11,6 +24,10 @@
   export default {
     props: {
       icon: {},
+      loading: {
+        type: Boolean,
+        default: false
+      },
       iconPosition: {
         type: String,
         default: 'left',
@@ -25,9 +42,14 @@
 
 <style lang="scss" type="text/scss" scoped>
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
+
   .b-button {
     display: inline-flex;
     justify-content: center;
@@ -41,7 +63,7 @@
     background: var(--button-bg);
     vertical-align: middle;
     &:hover {
-      border-color: var(--border-color);
+      border-color: var(--border-color-hover);
     }
 
     &:active {
@@ -67,6 +89,9 @@
         order: 2;
         margin-right: 0;
         margin-left: .2em;
+      }
+      .loading {
+        animation: spin .8s infinite linear;
       }
     }
     .loading {

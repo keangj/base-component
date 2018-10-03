@@ -27,21 +27,23 @@
 </head>
 <body>
 <div id="app">
-  <b-button icon="settings">
+  <b-button icon="down">
     提交
   </b-button>
-  <b-button icon="download1" icon-position="right">
-    下载
-  </b-button>
-  <b-button icon="loading" icon-position="right">
+  <b-button icon="download" :loading="loading1" @click="loading1 = !loading1" icon-position="right">
     下载
   </b-button>
   <b-button>
     提交
   </b-button>
   <b-icon name="settings"></b-icon>
+  <b-button-group>
+    <b-button icon="left">上一页</b-button>
+    <b-button>更多</b-button>
+    <b-button icon="right" icon-position="right">下一页</b-button>
+  </b-button-group>
 </div>
 <script src="./src/app.js"></script>
-<script src="//at.alicdn.com/t/font_860479_joab3tmsfvg.js"></script>
+<script src="//at.alicdn.com/t/font_860479_x0m6qe4mfci.js"></script>
 </body>
 </html>
