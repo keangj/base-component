@@ -1,6 +1,6 @@
 <template>
   <button class="b-button" :class="{[`icon-${iconPosition}`]: true}">
-    <b-icon class="icon" :name="icon"></b-icon>
+    <b-icon v-if="icon" class="icon" :name="icon"></b-icon>
     <div class="b-button-content">
       <slot></slot>
     </div>
@@ -12,7 +12,12 @@
     props: {
       icon: {},
       iconPosition: {
-        default: 'left'
+        type: String,
+        default: 'left',
+        validator (value) {
+          // 这个值必须匹配下列字符串中的一个
+          return value === 'left' || value === 'right'
+        }
       }
     }
   }
