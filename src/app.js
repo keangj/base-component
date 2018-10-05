@@ -20,7 +20,7 @@ new Vue({
 const expect = chai.expect
 chai.use(spise)
 
-// 测试settings
+// 测试按钮含有 icon
 {
   // 获得 button 实例构造函数
   const Constructor = Vue.extend(Button)
