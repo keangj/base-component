@@ -39,7 +39,7 @@ describe('Button', () => {
     const Constructor = Vue.extend(Button)
     const vm = new Constructor({
       propsData: {
-        icon: 'settings',
+        icon: 'settings'
       }
     }).$mount(div)
     const icon = vm.$el.querySelector('svg')
@@ -66,11 +66,11 @@ describe('Button', () => {
     const Constructor = Vue.extend(Button)
     const vm = new Constructor({
       propsData: {
-        icon: 'settings',
+        icon: 'settings'
       }
     }).$mount()
 
-    const callback = sinon.fake();
+    const callback = sinon.fake()
     vm.$on('click', callback)
     vm.$el.click()
     expect(callback).to.have.been.called
