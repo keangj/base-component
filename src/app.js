@@ -15,6 +15,20 @@ let vm = new Vue({
   el: '#app',
   data () {
     return { loading1: false }
+  },
+  methods: {
+    aaa (e) {
+      console.log('change', e.target.value)
+    },
+    bbb (e) {
+      console.log('input', e.target.value)
+    },
+    ccc (e) {
+      console.log('focus', e.target)
+    },
+    ddd (e) {
+      console.log('blur', e.target)
+    }
   }
 })
 
