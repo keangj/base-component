@@ -14,14 +14,17 @@ Vue.component('b-input', Input)
 let vm = new Vue({
   el: '#app',
   data () {
-    return { loading1: false }
+    return {
+      loading1: false,
+      val: '123'
+    }
   },
   methods: {
     aaa (e) {
       console.log('change', e.target.value)
     },
     bbb (e) {
-      console.log('input', e.target.value)
+      console.log('input', e)
     },
     ccc (e) {
       console.log('focus', e.target)

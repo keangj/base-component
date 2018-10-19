@@ -5,7 +5,7 @@
       :disabled="disabled"
       :readonly="readonly"
       @change="$emit('change', $event)"
-      @input="$emit('input', $event)"
+      @input=" $emit('input', $event.target.value)"
       @focus="$emit('focus', $event)"
       @blur="$emit('blur', $event)"
       type="text"
