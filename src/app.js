@@ -3,6 +3,8 @@ import Button from './button'
 import Icon from './icon'
 import ButtonGroup from './button-group'
 import Input from './input'
+import Col from './col'
+import Row from './row'
 // import chai from 'chai'
 // import spise from 'chai-spies'
 
@@ -10,6 +12,8 @@ Vue.component('b-button', Button)
 Vue.component('b-button-group', ButtonGroup)
 Vue.component('b-icon', Icon)
 Vue.component('b-input', Input)
+Vue.component('b-col', Col)
+Vue.component('b-row', Row)
 
 let vm = new Vue({
   el: '#app',
