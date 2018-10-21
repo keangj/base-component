@@ -45,10 +45,6 @@
 
 <style lang="scss" scoped>
 .col {
-
-  width: 100%;
-  /*height: 100px;*/
-
   // scss for 循环
   $class-prefix: col-;
   @for $n from 1 through 24 {
