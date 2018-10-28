@@ -15,7 +15,6 @@ describe('Input', () => {
     let vm
 
     afterEach(function () {
-      // 在本区块的每个测试用例之前执行
       vm.$destroy()
     })
     it('接收value', () => {

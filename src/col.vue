@@ -45,15 +45,17 @@
     computed: {
       colClass () {
         let {span, offset, xs, sm, md, lg, xl, xxl} = this
+        let createClasses = this.createClasses
         return [
           span && `col-${span}`,
           offset && `offset-${offset}`,
-          ...(xs && [`col-xs-${xs.span}`]),
-          ...(sm && [`col-sm-${sm.span}`]),
-          // ...(md && [`col-md-${md.span}`]),
-          // ...(lg && [`col-lg-${lg.span}`]),
-          // ...(xl && [`col-xl-${xl.span}`]),
-          // ...(xxl && [`col-xxl-${xxl.span}`])
+          ...createClasses({ span, offset}),
+          ...createClasses(xs, 'xs'),
+          ...createClasses(md, 'md'),
+          ...createClasses(sm, 'sm'),
+          ...createClasses(lg, 'lg'),
+          ...createClasses(xl, 'xl'),
+          ...createClasses(xxl, 'xxl')
         ]
       },
       colStyle () {
@@ -62,6 +64,15 @@
           paddingLeft: gutter / 2 + 'px',
           paddingRight: gutter / 2 + 'px'
         }
+      }
+    },
+    methods: {
+      createClasses (obj, str = '') {
+        if (!obj) { return [] }
+        let arr = []
+        if (obj.span) {arr.push(`col-${str}-${obj.span}`)}
+        if (obj.offset) {arr.push(`offset-${str}-${obj.offset}`)}
+        return arr
       }
     }
   }
@@ -98,7 +109,7 @@
     }
   }
 
-  @media (min-width: 577px) and (max-width: 768px) {
+  @media (min-width: 577px) {
     $class-prefix: col-sm-;
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
@@ -113,7 +124,7 @@
     }
   }
 
-  @media (min-width: 769px) and (max-width: 992px) {
+  @media (min-width: 769px) {
     $class-prefix: col-md-;
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
@@ -128,7 +139,7 @@
     }
   }
 
-  @media (min-width: 993px) and (max-width: 1200px) {
+  @media (min-width: 993px) {
     $class-prefix: col-lg-;
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
@@ -143,7 +154,7 @@
     }
   }
 
-  @media (min-width: 1201px) and (max-width: 1600px) {
+  @media (min-width: 1201px) {
     $class-prefix: col-xl-;
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
