@@ -5,6 +5,12 @@ import ButtonGroup from './button-group'
 import Input from './input'
 import Col from './col'
 import Row from './row'
+import Layout from './layout'
+import Content from './content'
+import Header from './header'
+import Footer from './footer'
+import sider from './sider'
+
 // import chai from 'chai'
 // import spise from 'chai-spies'
 
@@ -14,6 +20,11 @@ Vue.component('b-icon', Icon)
 Vue.component('b-input', Input)
 Vue.component('b-col', Col)
 Vue.component('b-row', Row)
+Vue.component('b-layout', Layout)
+Vue.component('b-content', Content)
+Vue.component('b-header', Header)
+Vue.component('b-footer', Footer)
+Vue.component('b-sider', sider)
 
 let vm = new Vue({
   el: '#app',
