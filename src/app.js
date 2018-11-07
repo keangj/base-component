@@ -10,7 +10,10 @@ import Content from './content'
 import Header from './header'
 import Footer from './footer'
 import sider from './sider'
+import Toast from './toast'
+import plugin from './plugin'
 
+Vue.use(plugin)
 // import chai from 'chai'
 // import spise from 'chai-spies'
 
@@ -25,27 +28,17 @@ Vue.component('b-content', Content)
 Vue.component('b-header', Header)
 Vue.component('b-footer', Footer)
 Vue.component('b-sider', sider)
-
+Vue.component('b-toast', Toast)
 let vm = new Vue({
   el: '#app',
   data () {
     return {
-      loading1: false,
-      val: '123'
+
     }
   },
   methods: {
-    aaa (e) {
-      console.log('change', e.target.value)
-    },
-    bbb (e) {
-      console.log('input', e)
-    },
-    ccc (e) {
-      console.log('focus', e.target)
-    },
-    ddd (e) {
-      console.log('blur', e.target)
+    onToast () {
+      this.$toast('hello world')
     }
   }
 })
