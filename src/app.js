@@ -38,7 +38,12 @@ let vm = new Vue({
   },
   methods: {
     onToast () {
-      this.$toast('hello world')
+      this.$toast('hello world', {
+        // text: 'xxx',
+        // callback () {
+        //   console.log(123)
+        // }
+      })
     }
   }
 })
