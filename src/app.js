@@ -38,11 +38,14 @@ let vm = new Vue({
   },
   methods: {
     onToast () {
-      this.$toast('hello world', {
-        // text: 'xxx',
-        // callback () {
-        //   console.log(123)
-        // }
+      this.$toast('he是示我是提示我是提示', {
+        closeButton: {
+          text: 'X',
+          callback () {
+            console.log(123)
+          }
+        },
+        enableHtml: true
       })
     }
   }

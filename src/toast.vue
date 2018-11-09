@@ -1,6 +1,10 @@
 <template>
-  <div class="toast">
-    <slot></slot>
+  <div class="toast" ref="toast">
+    <div class="message">
+      <slot v-if="enableHtml"></slot>
+      <div v-if="!enableHtml" v-html="$slots.default[0]"></div>
+    </div>
+    <div class="line" ref="line"></div>
     <span class="close" v-if="closeButton" @click="onClickClose">
       {{ closeButton.text }}
     </span>
@@ -13,11 +17,11 @@
     props: {
       autoClose: {
         type: Boolean,
-        default: true
+        default: false
       },
       autoCloseDelay: {
         type: Number,
-        default: 5
+        default: 50
       },
       closeButton: {
         type: Object,
@@ -27,14 +31,31 @@
             callback: undefined
           }
         }
+      },
+      enableHtml: {
+        type: Boolean,
+        default: false
       }
     },
     mounted() {
-      setTimeout(() => {
-        this.close()
-      }, this.autoCloseDelay * 1000)
+      this.resetLineHeight()
+      this.execAutoClose()
     },
     methods: {
+      execAutoClose () {
+        if (this.autoClose) {
+          setTimeout(() => {
+            this.close()
+          }, this.autoCloseDelay * 1000)
+        }
+      },
+      resetLineHeight () {
+        this.$nextTick(() => {
+          console.log(this.$refs.toast.getBoundingClientRect().height)
+          console.log(this.$refs.line.getBoundingClientRect().height)
+          this.$refs.line.style.height = `${this.$refs.toast.getBoundingClientRect().height}px`
+        })
+      },
       close () {
         this.$el.remove()
         this.$destroy()
@@ -51,7 +72,7 @@
 
 <style lang="scss" scoped>
 $font-size: 14px;
-$toast-height: 40px;
+$toast-min-height: 40px;
 .toast {
   position: fixed;
   top: 0;
@@ -60,20 +81,22 @@ $toast-height: 40px;
   display: flex;
   align-items: center;
   border-radius: 4px;
-  padding: 0 .5em;
-  min-height: $toast-height;
   font-size: $font-size;
   color: #fff;
   background: rgba(0,0,0,0.74);
   box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.50);
+  .message {
+    padding: 8px 1em;
+  }
   .close {
-    border-left: 1px solid #aaa;
-    padding-left: 10px;
-    padding-right: 3px;
-    margin-left: 10px;
+    padding-left: 13px;
+    padding-right: 13px;
     cursor: pointer;
-    height: $toast-height;
-    line-height: $toast-height;
+    height: 100%;
+  }
+  .line {
+    border-right: 1px solid #666;
+    height: 100%;
   }
 }
 </style>
