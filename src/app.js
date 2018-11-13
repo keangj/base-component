@@ -45,7 +45,8 @@ let vm = new Vue({
             console.log(123)
           }
         },
-        enableHtml: true
+        enableHtml: true,
+        position: 'bottom'
       })
     }
   }

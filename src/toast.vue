@@ -1,5 +1,5 @@
 <template>
-  <div class="toast" ref="toast">
+  <div class="toast" :class="toastClasses" ref="toast">
     <div class="message">
       <slot v-if="enableHtml"></slot>
       <div v-if="!enableHtml" v-html="$slots.default[0]"></div>
@@ -21,7 +21,7 @@
       },
       autoCloseDelay: {
         type: Number,
-        default: 50
+        default: 5
       },
       closeButton: {
         type: Object,
@@ -35,6 +35,20 @@
       enableHtml: {
         type: Boolean,
         default: false
+      },
+      position: {
+        type: String,
+        default: 'top',
+        validator (value) {
+          return ['top', 'bottom', 'middle'].indexOf(value) !== -1
+        }
+      }
+    },
+    computed: {
+      toastClasses () {
+        return {
+          [`position-${this.position}`]: true
+        }
       }
     },
     mounted() {
@@ -51,8 +65,6 @@
       },
       resetLineHeight () {
         this.$nextTick(() => {
-          console.log(this.$refs.toast.getBoundingClientRect().height)
-          console.log(this.$refs.line.getBoundingClientRect().height)
           this.$refs.line.style.height = `${this.$refs.toast.getBoundingClientRect().height}px`
         })
       },
@@ -75,12 +87,11 @@ $font-size: 14px;
 $toast-min-height: 40px;
 .toast {
   position: fixed;
-  top: 0;
   left: 50%;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
   border-radius: 4px;
+  min-height: 40px;
   font-size: $font-size;
   color: #fff;
   background: rgba(0,0,0,0.74);
@@ -93,10 +104,25 @@ $toast-min-height: 40px;
     padding-right: 13px;
     cursor: pointer;
     height: 100%;
+  &:hover {
+    color: #ccc;
+  }
   }
   .line {
     border-right: 1px solid #666;
     height: 100%;
+  }
+  &.position-top {
+    top: 0;
+    transform: translateX(-50%);
+  }
+  &.position-middle {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &.position-bottom {
+    bottom: 0;
+    transform: translateX(-50%);
   }
 }
 </style>

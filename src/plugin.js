@@ -4,7 +4,6 @@ export default {
   install (Vue, options) {
     Vue.prototype.$toast = function (message, toastOptions = {}) {
       let Constructor = Vue.extend(Toast)
-      console.log(toastOptions)
       let toast = new Constructor({
         propsData: toastOptions
       })
