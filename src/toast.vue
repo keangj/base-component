@@ -59,7 +59,7 @@
       execAutoClose () {
         if (this.autoClose) {
           setTimeout(() => {
-            this.close()
+            this.closeToast()
           }, this.autoCloseDelay * 1000)
         }
       },
@@ -68,12 +68,12 @@
           this.$refs.line.style.height = `${this.$refs.toast.getBoundingClientRect().height}px`
         })
       },
-      close () {
+      closeToast () {
         this.$el.remove()
         this.$destroy()
       },
       onClickClose () {
-        this.close()
+        this.closeToast()
         if (this.closeButton && typeof this.closeButton.callback === 'function') {
           this.closeButton.callback()
         }
