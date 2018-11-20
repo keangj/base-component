@@ -70,6 +70,7 @@
       },
       closeToast () {
         this.$el.remove()
+        this.$emit('beforeClose')
         this.$destroy()
       },
       onClickClose () {
@@ -99,7 +100,7 @@ $toast-min-height: 40px;
   font-size: $font-size;
   color: #fff;
   background: rgba(0,0,0,0.74);
-  box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.50);
+  box-shadow: 0 0 3px 0 rgba(0,0,0,0.50);
   animation: fade-in 1s;
   .message {
     padding: 8px 1em;
