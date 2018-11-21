@@ -50,7 +50,7 @@ let vm = new Vue({
       })
     },
     onToast2 () {
-      this.$toast('middlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddle', {
+      this.$toast('own down down down down down down down down downloadfasdfsadfsadfds down down down down down down down down down down down down down down down down ', {
         closeButton: {
           text: 'X',
           callback () {
@@ -62,7 +62,7 @@ let vm = new Vue({
       })
     },
     onToast3 () {
-      this.$toast('down', {
+      this.$toast('123', {
         closeButton: {
           text: 'X',
           callback () {

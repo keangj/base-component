@@ -88,6 +88,8 @@
 <style lang="scss" scoped>
 $font-size: 14px;
 $toast-min-height: 40px;
+$toast-bg: rgba(0,0,0,0.74);
+$animation-duration: .5s;
 @keyframes fade-in {
   0%{opacity: 0;}
   100%{opacity: 1;}
@@ -106,7 +108,7 @@ $toast-min-height: 40px;
   &.position-top {
     top: 0;
     transform: translateX(-50%);
-    animation: slide-up 1s;
+    animation: slide-up $animation-duration;
     .toast {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
@@ -115,12 +117,12 @@ $toast-min-height: 40px;
   &.position-middle {
     top: 50%;
     transform: translate(-50%, -50%);
-    animation: fade-in 1s;
+    animation: fade-in $animation-duration;
   }
   &.position-bottom {
     bottom: 0;
     transform: translateX(-50%);
-    animation: slide-down 1s;
+    animation: slide-down $animation-duration;
     .toast {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
@@ -130,13 +132,14 @@ $toast-min-height: 40px;
     display: flex;
     align-items: center;
     border-radius: 4px;
-    min-height: 40px;
+    min-height: $toast-min-height;
     font-size: $font-size;
     color: #fff;
-    background: rgba(0,0,0,0.74);
+    background: $toast-bg;
     box-shadow: 0 0 3px 0 rgba(0,0,0,0.50);
     .message {
       padding: 8px 1em;
+      word-break:break-all;
     }
     .close {
       padding-left: 13px;
