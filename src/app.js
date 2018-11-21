@@ -38,7 +38,31 @@ let vm = new Vue({
   },
   methods: {
     onToast () {
-      this.$toast('he是示我是提示我是提示', {
+      this.$toast('up<b style="color: red">BBBBB</b>', {
+        closeButton: {
+          text: 'X',
+          callback () {
+            console.log(123)
+          }
+        },
+        enableHtml: false,
+        position: 'top'
+      })
+    },
+    onToast2 () {
+      this.$toast('middlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddlemiddle', {
+        closeButton: {
+          text: 'X',
+          callback () {
+            console.log(123)
+          }
+        },
+        enableHtml: true,
+        position: 'middle'
+      })
+    },
+    onToast3 () {
+      this.$toast('down', {
         closeButton: {
           text: 'X',
           callback () {

@@ -13,7 +13,6 @@ export default {
         propsData: toastOptions,
         onClose: () => {
           currentToast = null
-          console.log(currentToast)
         }
       })
     }

@@ -1,13 +1,15 @@
 <template>
-  <div class="toast" :class="toastClasses" ref="toast">
-    <div class="message">
-      <slot v-if="enableHtml"></slot>
-      <div v-if="!enableHtml" v-html="$slots.default[0]"></div>
+  <div class="wrapper" :class="toastClasses">
+    <div class="toast" ref="toast">
+      <div class="message">
+        <slot v-if="enableHtml"></slot>
+        <div v-if="!enableHtml" v-html="$slots.default[0]"></div>
+      </div>
+      <div class="line" ref="line"></div>
+      <span class="close" v-if="closeButton" @click="onClickClose">
+        {{ closeButton.text }}
+      </span>
     </div>
-    <div class="line" ref="line"></div>
-    <span class="close" v-if="closeButton" @click="onClickClose">
-      {{ closeButton.text }}
-    </span>
   </div>
 </template>
 
@@ -87,48 +89,68 @@
 $font-size: 14px;
 $toast-min-height: 40px;
 @keyframes fade-in {
-  0%{opacity: 0; transform: translateY(100%);}
-  100%{opacity: 1; transform: translateY(0%);}
+  0%{opacity: 0;}
+  100%{opacity: 1;}
 }
-.toast {
+@keyframes slide-up {
+  0%{opacity: 0; transform: translateX(-50%) translateY(-100%);}
+  100%{opacity: 1; transform: translateX(-50%) translateY(0%);}
+}
+@keyframes slide-down {
+  0%{opacity: 0; transform: translateX(-50%) translateY(100%);}
+  100%{opacity: 1; transform: translateX(-50%) translateY(0%);}
+}
+.wrapper {
   position: fixed;
   left: 50%;
-  display: flex;
-  align-items: center;
-  border-radius: 4px;
-  min-height: 40px;
-  font-size: $font-size;
-  color: #fff;
-  background: rgba(0,0,0,0.74);
-  box-shadow: 0 0 3px 0 rgba(0,0,0,0.50);
-  animation: fade-in 1s;
-  .message {
-    padding: 8px 1em;
-  }
-  .close {
-    padding-left: 13px;
-    padding-right: 13px;
-    cursor: pointer;
-    height: 100%;
-  &:hover {
-    color: #ccc;
-  }
-  }
-  .line {
-    border-right: 1px solid #666;
-    height: 100%;
-  }
   &.position-top {
     top: 0;
     transform: translateX(-50%);
+    animation: slide-up 1s;
+    .toast {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
   }
   &.position-middle {
     top: 50%;
     transform: translate(-50%, -50%);
+    animation: fade-in 1s;
   }
   &.position-bottom {
     bottom: 0;
     transform: translateX(-50%);
+    animation: slide-down 1s;
+    .toast {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+  .toast {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    min-height: 40px;
+    font-size: $font-size;
+    color: #fff;
+    background: rgba(0,0,0,0.74);
+    box-shadow: 0 0 3px 0 rgba(0,0,0,0.50);
+    .message {
+      padding: 8px 1em;
+    }
+    .close {
+      padding-left: 13px;
+      padding-right: 13px;
+      cursor: pointer;
+      height: 100%;
+    &:hover {
+      color: #ccc;
+    }
+    }
+    .line {
+      border-right: 1px solid #666;
+      height: 100%;
+    }
   }
 }
 </style>
