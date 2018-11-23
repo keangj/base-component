@@ -44,9 +44,7 @@ let vm = new Vue({
           callback () {
             console.log(123)
           }
-        },
-        enableHtml: false,
-        position: 'top'
+        }
       })
     },
     onToast2 () {

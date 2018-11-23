@@ -2,8 +2,8 @@
   <div class="wrapper" :class="toastClasses">
     <div class="toast" ref="toast">
       <div class="message">
-        <slot v-if="enableHtml"></slot>
-        <div v-if="!enableHtml" v-html="$slots.default[0]"></div>
+        <div v-if="enableHtml" v-html="$slots.default[0]"></div>
+        <slot v-else></slot>
       </div>
       <div class="line" ref="line"></div>
       <span class="close" v-if="closeButton" @click="onClickClose">
@@ -18,12 +18,11 @@
     name: 'b-toast',
     props: {
       autoClose: {
-        type: Boolean,
-        default: false
-      },
-      autoCloseDelay: {
-        type: Number,
-        default: 5
+        type: [Boolean, Number],
+        default: 5,
+        validator (value) {
+          return value === false || typeof value === 'number'
+        }
       },
       closeButton: {
         type: Object,
@@ -62,7 +61,7 @@
         if (this.autoClose) {
           setTimeout(() => {
             this.closeToast()
-          }, this.autoCloseDelay * 1000)
+          }, this.autoClose * 1000)
         }
       },
       resetLineHeight () {
