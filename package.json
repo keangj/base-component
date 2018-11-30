@@ -1,7 +1,7 @@
 {
   "name": "base-87",
   "version": "0.0.3",
-  "description": "\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[C\u001b[C\u001b[C\u001b基础UI组件",
+  "description": "基础UI组件",
   "main": "dist/index.js",
   "scripts": {
     "dev-test": "parcel watch test/* --no-cache & karma start",
