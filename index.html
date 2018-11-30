@@ -27,10 +27,33 @@
 </head>
 <body>
 <div id="app">
-  <button @click="onToast">up</button>
-  <button @click="onToast2">middle</button>
-  <button @click="onToast3">down</button>
-  <b-button>546546</b-button>
+  <b-tabs selected.sync="selectedTab">
+    <b-tabs-head>
+      <template slot="actions">
+        <button>设置</button>
+      </template>
+      <b-tabs-item>
+        <b-icon name="settings"></b-icon>item1
+      </b-tabs-item>
+      <b-tabs-item>
+        item2
+      </b-tabs-item>
+      <b-tabs-item>
+        item3
+      </b-tabs-item>
+    </b-tabs-head>
+    <b-tabs-body>
+      <b-tabs-pane>
+        content1
+      </b-tabs-pane>
+      <b-tabs-pane>
+        content2
+      </b-tabs-pane>
+      <b-tabs-pane>
+        content3
+      </b-tabs-pane>
+    </b-tabs-body>
+  </b-tabs>
 </div>
 <script src="./src/app.js"></script>
 </body>

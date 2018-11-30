@@ -12,6 +12,11 @@ import Footer from './footer'
 import sider from './sider'
 import Toast from './toast'
 import plugin from './plugin'
+import Tabs from './tabs'
+import TabsHead from './tabs-head'
+import TabsBody from './tabs-body'
+import TabsItem from './tabs-item'
+import TabsPane from './tabs-pane'
 
 Vue.use(plugin)
 // import chai from 'chai'
@@ -29,6 +34,12 @@ Vue.component('b-header', Header)
 Vue.component('b-footer', Footer)
 Vue.component('b-sider', sider)
 Vue.component('b-toast', Toast)
+Vue.component('b-tabs', Tabs)
+Vue.component('b-tabs-head', TabsHead)
+Vue.component('b-tabs-body', TabsBody)
+Vue.component('b-tabs-item', TabsItem)
+Vue.component('b-tabs-pane', TabsPane)
+
 let vm = new Vue({
   el: '#app',
   data () {
@@ -132,7 +143,6 @@ let vm = new Vue({
 //   vm.$mount(div)
 //   let svg = vm.$el.querySelector('svg')
 //   let { order } = window.getComputedStyle(svg)
-//   console.log(window.getComputedStyle(svg).order)
 //   expect(order).to.eq('1')
 //   vm.$el.remove()
 //   vm.$destroy()
@@ -150,7 +160,6 @@ let vm = new Vue({
 //   vm.$mount(div)
 //   let svg = vm.$el.querySelector('svg')
 //   let { order } = window.getComputedStyle(svg)
-//   console.log(window.getComputedStyle(svg).order)
 //   expect(order).to.eq('2')
 //   vm.$el.remove()
 //   vm.$destroy()
