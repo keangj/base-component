@@ -6,7 +6,19 @@
 
 <script>
   export default {
-    name: "b-tabs-head-pane"
+    name: "b-tabs-head-pane",
+    inject: ['eventBus'],
+    props: {
+      name: {
+        type: [String, Number],
+        required: true
+      }
+    },
+    mounted () {
+      this.eventBus.$on('update:selected', (name) => {
+        console.log(name)
+      })
+    }
   }
 </script>
 

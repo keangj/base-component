@@ -27,26 +27,26 @@
 </head>
 <body>
 <div id="app">
-  <b-tabs selected.sync="selectedTab">
+  <b-tabs :selected.sync="selectedTab">
     <b-tabs-head>
-      <b-tabs-item>
+      <b-tabs-item name="item1">
         item1
       </b-tabs-item>
-      <b-tabs-item>
+      <b-tabs-item name="item2">
         item2
       </b-tabs-item>
-      <b-tabs-item>
+      <b-tabs-item name="item3">
         item3
       </b-tabs-item>
     </b-tabs-head>
     <b-tabs-body>
-      <b-tabs-pane>
+      <b-tabs-pane name="item1">
         content1
       </b-tabs-pane>
-      <b-tabs-pane>
+      <b-tabs-pane name="item2">
         content2
       </b-tabs-pane>
-      <b-tabs-pane>
+      <b-tabs-pane name="item3">
         content3
       </b-tabs-pane>
     </b-tabs-body>
