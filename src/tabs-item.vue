@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="xxx">
+  <div class="tabs-item" @click="xxx" :class="classes">
     <slot></slot>
   </div>
 </template>
@@ -18,9 +18,21 @@
         required: true
       }
     },
+    data () {
+      return {
+        active: false
+      }
+    },
+    computed: {
+      classes () {
+        return {
+          active: this.active
+        }
+      }
+    },
     mounted () {
       this.eventBus.$on('update:selected', (name) => {
-        console.log(name)
+        this.active = this.name === name;
       })
     },
     methods: {
@@ -32,5 +44,13 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .tabs-item {
+    display: flex;
+    /*align-items: center;*/
+    flex-shrink: 0;
+    padding: 0 2em;
+    &.active {
+      background-color: #eee;
+    }
+  }
 </style>

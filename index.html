@@ -29,7 +29,11 @@
 <div id="app">
   <b-tabs :selected.sync="selectedTab">
     <b-tabs-head>
+      <template slot="actions">
+        <b-button>设置</b-button>
+      </template>
       <b-tabs-item name="item1">
+        <b-icon name="settings"></b-icon>
         item1
       </b-tabs-item>
       <b-tabs-item name="item2">
