@@ -45,19 +45,19 @@
 
 <style lang="scss" scoped>
   $tabs-height: 40px;
-  $color: blue;
+  $color: rgb(24, 144, 255);
   .tabs-item {
     display: flex;
     align-items: center;
-    /*flex-shrink: 0;*/
-    margin: 0 1em;
     padding: 0 1em;
     height: 100%;
     cursor: pointer;
+    &:not(:first-child) {
+      margin-left: 1em;
+    }
     &.active {
       color: $color;
       fill: $color;
-      /*background-color: #eee;*/
     }
   }
 </style>

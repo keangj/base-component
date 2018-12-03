@@ -37,7 +37,6 @@
 <style lang="scss" scoped>
   .tabs-pane {
     &.active {
-      /*background-color: #eee;*/
     }
   }
 </style>
