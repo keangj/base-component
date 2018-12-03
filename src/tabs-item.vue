@@ -44,13 +44,20 @@
 </script>
 
 <style lang="scss" scoped>
+  $tabs-height: 40px;
+  $color: blue;
   .tabs-item {
     display: flex;
-    /*align-items: center;*/
-    flex-shrink: 0;
-    padding: 0 2em;
+    align-items: center;
+    /*flex-shrink: 0;*/
+    margin: 0 1em;
+    padding: 0 1em;
+    height: $tabs-height;
+    cursor: pointer;
     &.active {
-      background-color: #eee;
+      color: $color;
+      fill: $color;
+      /*background-color: #eee;*/
     }
   }
 </style>
