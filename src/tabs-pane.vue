@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "b-tabs-head-pane",
+    name: "b-tabs-pane",
     inject: ['eventBus'],
     props: {
       name: {
@@ -37,7 +37,7 @@
 <style lang="scss" scoped>
   .tabs-pane {
     &.active {
-      background-color: #eee;
+      /*background-color: #eee;*/
     }
   }
 </style>

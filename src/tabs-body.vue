@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "b-tabs-head"
+    name: "b-tabs-body"
   }
 </script>
 

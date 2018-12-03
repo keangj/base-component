@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "b-tabs-head-item",
+    name: "b-tabs-item",
     inject: ['eventBus'],
     props: {
       disabled: {
@@ -37,7 +37,7 @@
     },
     methods: {
       xxx () {
-        this.eventBus.$emit('update:selected', this.name)
+        this.eventBus.$emit('update:selected', this.name, this)
       }
     }
   }
@@ -52,7 +52,7 @@
     /*flex-shrink: 0;*/
     margin: 0 1em;
     padding: 0 1em;
-    height: $tabs-height;
+    height: 100%;
     cursor: pointer;
     &.active {
       color: $color;
