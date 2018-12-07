@@ -1,9 +1,11 @@
 <template>
   <div class="popover" @click.stop="xxx">
-    <div class="content-wrapper" v-if="visible" @click.stop>
+    <div class="content-wrapper" ref="contentWrapper" v-if="visible" @click.stop>
       <slot name="content"></slot>
     </div>
-    <slot></slot>
+    <span ref="triggerWrapper">
+      <slot></slot>
+    </span>
   </div>
 </template>
 
@@ -20,6 +22,12 @@
         this.visible = !this.visible
         if (this.visible) {
           this.$nextTick(() => {
+            // 将 popover 内容区域移动到 dom 最外层
+            document.body.appendChild(this.$refs.contentWrapper)
+            // 设置内容区域的位置
+            let {left, top} = this.$refs.triggerWrapper.getBoundingClientRect()
+            this.$refs.contentWrapper.style.top = `${window.scrollY + top}px`
+            this.$refs.contentWrapper.style.left = `${window.scrollY + left}px`
             let elementHandler = () => {
               this.visible = false
               console.log('移除监听')
@@ -38,10 +46,13 @@
 
 <style lang="scss" scoped>
 .popover {
-  border: 1px solid red;
+  position: relative;
+  /*border: 1px solid red;*/
   display: inline-block;
-  .content-wrapper {
-    border: 2px solid #aaa;
-  }
+}
+.content-wrapper {
+  position: absolute;
+  border: 2px solid #aaa;
+  transform: translateY(-100%);
 }
 </style>
