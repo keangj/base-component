@@ -50,39 +50,8 @@ let vm = new Vue({
     }
   },
   methods: {
-    onToast () {
-      this.$toast('up<b style="color: red">BBBBB</b>', {
-        closeButton: {
-          text: 'X',
-          callback () {
-            console.log(123)
-          }
-        }
-      })
-    },
-    onToast2 () {
-      this.$toast('own down down down down down down down down downloadfasdfsadfsadfds down down down down down down down down down down down down down down down down ', {
-        closeButton: {
-          text: 'X',
-          callback () {
-            console.log(123)
-          }
-        },
-        enableHtml: true,
-        position: 'middle'
-      })
-    },
-    onToast3 () {
-      this.$toast('123', {
-        closeButton: {
-          text: 'X',
-          callback () {
-            console.log(123)
-          }
-        },
-        enableHtml: true,
-        position: 'bottom'
-      })
+    yyy () {
+      console.log('yyy')
     }
   }
 })
