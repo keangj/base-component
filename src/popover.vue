@@ -36,25 +36,29 @@
         const { contentWrapper, triggerWrapper } = this.$refs
         // 将 popover 内容区域移动到 dom 最外层
         document.body.appendChild(contentWrapper)
-        // 设置内容区域的位置
-        console.table(triggerWrapper.getBoundingClientRect())
-        let { left, top, bottom, width, height } = triggerWrapper.getBoundingClientRect()
-        if (this.position === 'top') {
-          contentWrapper.style.top = `${window.scrollY + top}px`
-          contentWrapper.style.left = `${window.scrollY + left}px`
-        } else if (this.position === 'bottom') {
-          contentWrapper.style.top = `${window.scrollY + bottom}px`
-          contentWrapper.style.left = `${window.scrollY + left}px`
-        } else if (this.position === 'left') {
-          console.table(contentWrapper.getBoundingClientRect())
-          contentWrapper.style.top = `${window.scrollY + top -
-          (contentWrapper.getBoundingClientRect().height - height) / 2}px`
-          contentWrapper.style.left = `${window.scrollY + left}px`
-        } else if (this.position === 'right') {
-          contentWrapper.style.top = `${window.scrollY + top -
-          (contentWrapper.getBoundingClientRect().height - height) / 2}px`
-          contentWrapper.style.left = `${window.scrollY + left + width}px`
+        const { left, top, bottom, width, height } = triggerWrapper.getBoundingClientRect()
+        const { height: contentWrapperHeight } = contentWrapper.getBoundingClientRect()
+        let positions = {
+          top: {
+            top: window.scrollY + top,
+            left: window.scrollY + left
+          },
+          bottom: {
+            top: window.scrollY + bottom,
+            left: window.scrollY + left
+          },
+          left: {
+            top: window.scrollY + top - (contentWrapperHeight - height) / 2,
+            left: window.scrollY + left
+          },
+          right: {
+            top: window.scrollY + top - (contentWrapperHeight - height) / 2,
+            left: window.scrollY + left + width
+          },
         }
+        // 设置内容区域的位置
+        contentWrapper.style.top = `${positions[this.position].top}px`
+        contentWrapper.style.left = `${positions[this.position].left}px`
       },
       elementHandler (event) {
         if (this.$refs.popover &&
