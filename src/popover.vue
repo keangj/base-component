@@ -6,7 +6,7 @@
       :class="{[`position-${position}`]: true}"
       v-if="visible"
     >
-      <slot name="content"></slot>
+      <slot name="content" :close="close"></slot>
     </div>
     <span class="trigger-wrapper" ref="triggerWrapper">
       <slot></slot>

@@ -29,9 +29,10 @@
 <div id="app">
   <div style=" height: 500px; margin: 100px 100px;"
   @click="yyy">
-    <b-popover trigger="hover">
-      <template slot="content">
-        <div>contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</div>
+    <b-popover>
+      <template slot="content" slot-scope="{close}">
+        <div>conteentcontent</div>
+        <b-button @click="close">X</b-button>
       </template>
       <template>
         <b-button>click me</b-button>
