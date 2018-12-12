@@ -101,7 +101,6 @@
         this.visible = true
         this.$nextTick(() => {
           this.positionContent()
-          console.log('添加监听')
           document.addEventListener('click', this.elementHandler)
         })
       },
