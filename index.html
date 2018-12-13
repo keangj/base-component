@@ -26,43 +26,12 @@
   </style>
 </head>
 <body>
-<div id="app">
-  <div style=" height: 500px; margin: 100px 100px;"
-  @click="yyy">
-    <b-popover>
-      <template slot="content" slot-scope="{close}">
-        <div>conteentcontent</div>
-        <b-button @click="close">X</b-button>
-      </template>
-      <template>
-        <b-button>click me</b-button>
-      </template>
-    </b-popover>
-    <b-popover position="bottom" trigger="hover">
-      <template slot="content">
-        <div>我是内容</div>
-      </template>
-      <template>
-        <b-button>bottom</b-button>
-      </template>
-    </b-popover>
-    <b-popover position="left" trigger="hover">
-      <template slot="content">
-        <div>left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left left </div>
-      </template>
-      <template>
-        <b-button>left</b-button>
-      </template>
-    </b-popover>
-    <b-popover position="right" trigger="hover">
-      <template slot="content">
-        <div>我是内容</div>
-      </template>
-      <template>
-        <b-button>right</b-button>
-      </template>
-    </b-popover>
-  </div>
+<div id="app" style="padding: 100px;">
+  <b-collapse>
+    <b-collapse-item title="title1">content1</b-collapse-item>
+    <b-collapse-item title="title2">content2</b-collapse-item>
+    <b-collapse-item title="title3">content3</b-collapse-item>
+  </b-collapse>
 </div>
 <script src="./src/app.js"></script>
 </body>
