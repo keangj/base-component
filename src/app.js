@@ -50,7 +50,7 @@ let vm = new Vue({
   el: '#app',
   data () {
     return {
-      selectedTab: 'item1'
+      selected: '2'
     }
   },
   methods: {

@@ -1,9 +1,9 @@
 <template>
   <div class="collapse-item">
-    <div class="title" @click="expand = !expand">
+    <div class="title" @click="toggle">
       {{title}}
     </div>
-    <div class="content" v-if="expand">
+    <div class="content" v-if="open">
       <slot></slot>
     </div>
   </div>
@@ -12,15 +12,39 @@
 <script>
   export default {
     name: 'b-collapse-item',
+    inject: ['eventBus'],
     props: {
       title: {
         type: String,
         required: true
+      },
+      name: {
+        type: String
       }
     },
     data () {
       return {
-        expand: false
+        open: false
+      }
+    },
+    mounted () {
+      this.eventBus.$on('update:selected', (name) => {
+        console.log(name)
+        if (name !== this.name) {
+          this.open = false
+        } else {
+          this.open = true
+        }
+      })
+    },
+    methods: {
+      toggle () {
+        if (this.open) {
+          this.open = false
+        } else {
+          this.open = true
+          this.eventBus.$emit('update:selected', this.name)
+        }
       }
     }
   }
