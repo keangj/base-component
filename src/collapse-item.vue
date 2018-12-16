@@ -1,7 +1,7 @@
 <template>
   <div class="collapse-item">
     <div class="title" @click="toggle">
-      {{title}}
+      {{title}} {{accordion}}
     </div>
     <div class="content" v-if="open">
       <slot></slot>
@@ -24,26 +24,21 @@
     },
     data () {
       return {
-        open: false
+        open: false,
+        accordion: false
       }
     },
     mounted () {
-      this.eventBus.$on('update:selected', (name) => {
-        console.log(name)
-        if (name !== this.name) {
-          this.open = false
-        } else {
-          this.open = true
-        }
+      this.eventBus.$on('update:selected', (names) => {
+        this.open = names.indexOf(this.name) !== -1;
       })
     },
     methods: {
       toggle () {
         if (this.open) {
-          this.open = false
+          this.eventBus.$emit('update:removeSelected', this.name)
         } else {
-          this.open = true
-          this.eventBus.$emit('update:selected', this.name)
+          this.eventBus.$emit('update:addSelected', this.name)
         }
       }
     }

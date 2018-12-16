@@ -10,7 +10,11 @@
     name: 'b-collapse',
     props: {
       selected: {
-        type: String
+        type: Array
+      },
+      accordion: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
@@ -24,11 +28,25 @@
       }
     },
     mounted () {
-      console.log(this.selected)
       this.eventBus.$emit('update:selected', this.selected)
-      // this.eventBus.$on('update:selected', (name) => {
-      //   this.$emit('update:selected', name)
-      // })
+
+      this.eventBus.$on('update:addSelected', (name) => {
+        let selectedCopy = JSON.parse(JSON.stringify(this.selected))
+        if (this.accordion) {
+          selectedCopy = [name]
+        } else {
+          selectedCopy.push(name)
+        }
+        this.eventBus.$emit('update:selected', selectedCopy)
+        this.$emit('update:selected', selectedCopy)
+      })
+
+      this.eventBus.$on('update:removeSelected', (name) => {
+        let selectedCopy = JSON.parse(JSON.stringify(this.selected))
+        selectedCopy =  selectedCopy.filter(item => item !== name)
+        this.eventBus.$emit('update:selected', selectedCopy)
+        this.$emit('update:selected', selectedCopy)
+      })
     }
   }
 </script>
