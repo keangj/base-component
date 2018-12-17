@@ -6,9 +6,7 @@
       <b-button :loading="true">带loading的按钮</b-button>
       <b-button disable>禁用按钮</b-button>
     </div>
-    <pre>
-      <code>{{content}}</code>
-    </pre>
+    <pre><code>{{content}}</code></pre>
   </div>
 </template>
 
@@ -25,7 +23,7 @@
           <b-button icon="settings">带icon的按钮</b-button>
           <b-button :loading="true">带loading的按钮</b-button>
           <b-button disable>禁用按钮</b-button>
-        `
+        `.replace(/\t+| +/g, '').trim()
       }
     }
   }

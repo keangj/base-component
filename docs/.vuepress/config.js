@@ -1,4 +1,5 @@
 module.exports = {
+  base: '/base-component/',
   title: 'base components',
   description: '基于 Vue 的基础 UI 组件库',
   themeConfig: {
