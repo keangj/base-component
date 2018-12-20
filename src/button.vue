@@ -45,6 +45,7 @@
 </script>
 
 <style lang="scss" type="text/scss" scoped>
+  /*@import "var";*/
   $border-color: #999;
   $border-color-hover: #666;
   $border-radius: 4px;

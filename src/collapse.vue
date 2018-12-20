@@ -52,6 +52,7 @@
 </script>
 
 <style lang="scss" scoped>
+  /*@import "var";*/
   $border-color: #ddd;
   $border-radius: 4px;
   .collapse {
