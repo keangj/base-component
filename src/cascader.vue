@@ -1,16 +1,16 @@
 <template>
   <div class="cascader">
-    <div class="trigger">
+    <div class="trigger" @click="popoverVisible = !popoverVisible">
 
     </div>
-    <div class="popover" v-for="item in source">
-      <Cascader-item :source-item="item"></Cascader-item>
+    <div class="popover" v-if="popoverVisible">
+      <Cascader-item :items="source"></Cascader-item>
     </div>
   </div>
 </template>
 
 <script>
-  import CascaderItem from './cascader-item'
+  import CascaderItem from './cascader-items'
   export default {
     name: 'b-cascader',
     components: {CascaderItem},
@@ -21,7 +21,7 @@
     },
     data () {
       return {
-
+        popoverVisible: false
       }
     }
   }
@@ -33,9 +33,14 @@
   .cascader {
     .trigger {
       border: 1px solid red;
+      height: 32px;
+      width: 100px;
     }
     .popover {
-
+      /*display: flex;*/
+      /*justify-items: flex-start;*/
+      /*align-items: flex-start;*/
+      border: 1px solid #000;
     }
   }
 </style>

@@ -21,7 +21,7 @@ import Popover from './popover'
 import Collapse from './collapse'
 import CollapseItem from './collapse-item'
 import Cascader from './cascader'
-import CascaderItem from './cascader-item'
+import CascaderItem from './cascader-items'
 
 Vue.use(plugin)
 // import chai from 'chai'
