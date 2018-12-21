@@ -118,7 +118,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "var";
+  /*@import "var";*/
   $border-color: #333;
   $border-radius: 4px;
 .popover {
