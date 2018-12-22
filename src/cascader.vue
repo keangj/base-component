@@ -4,7 +4,7 @@
 
     </div>
     <div class="popover" v-if="popoverVisible">
-      <Cascader-item :items="source"></Cascader-item>
+      <Cascader-item :items="source" :height="popoverHeight"></Cascader-item>
     </div>
   </div>
 </template>
@@ -17,6 +17,9 @@
     props: {
       source: {
         type: Array
+      },
+      popoverHeight: {
+        type: String
       }
     },
     data () {
@@ -40,7 +43,10 @@
       /*display: flex;*/
       /*justify-items: flex-start;*/
       /*align-items: flex-start;*/
-      border: 1px solid #000;
+      position: absolute;
+      /*border: 1px solid #000;*/
+      background-color: #fff;
+      @extend .box-shadow;
     }
   }
 </style>

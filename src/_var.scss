@@ -1,6 +1,6 @@
 $border-color-hover: #666;
 $border-color: #999;
-$border-color: #ddd;
+$border-color-light: #ddd;
 $border-radius: 4px;
 $box-shadow-color: rgba(0, 0, 0, 0.5);
 $button-active-bg: #eee;
@@ -12,3 +12,7 @@ $font-size: 14px;
 $height: 32px;
 $red: #ed4014;
 $tabs-height: 40px;
+
+.box-shadow {
+  box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+}
