@@ -4,7 +4,12 @@
 
     </div>
     <div class="popover" v-if="popoverVisible">
-      <Cascader-item :items="source" :height="popoverHeight"></Cascader-item>
+      <Cascader-item
+        :items="source"
+        :height="popoverHeight"
+        :selected="selected"
+        @update:selected="onUpdateSelected"
+      ></Cascader-item>
     </div>
   </div>
 </template>
@@ -20,11 +25,20 @@
       },
       popoverHeight: {
         type: String
+      },
+      selected: {
+        type: Array,
+        default: () => []
       }
     },
     data () {
       return {
         popoverVisible: false
+      }
+    },
+    methods: {
+      onUpdateSelected (x) {
+        this.$emit('update:selected', x)
       }
     }
   }

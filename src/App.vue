@@ -1,8 +1,12 @@
 <template>
   <div id="app" style="padding: 100px;">
-    111
-    <b-cascader :source="source" popover-height="200px"></b-cascader>
-    111
+    {{selected}}
+    <b-cascader
+      :source="source"
+      :selected="selected"
+      popover-height="200px"
+      @update:selected="selected = $event"
+    ></b-cascader>
   </div>
 </template>
 
@@ -39,6 +43,7 @@ export default {
   },
   data () {
     return {
+      selected: [],
       source: [
         {
           name: '浙江',
