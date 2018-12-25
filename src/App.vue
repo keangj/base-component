@@ -3,9 +3,8 @@
     {{selected}}
     <b-cascader
       :source="source"
-      :selected="selected"
+      :selected.sync="selected"
       popover-height="200px"
-      @update:selected="selected = $event"
     ></b-cascader>
   </div>
 </template>
