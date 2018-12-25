@@ -70,7 +70,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     .left {
-      /*border: 1px solid blue;*/
+      overflow: auto;
       padding-top: .3em;
       height: 100%;
     }

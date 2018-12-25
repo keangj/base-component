@@ -33,6 +33,14 @@
 // import CollapseItem from './collapse-item'
 import Cascader from './cascader'
 // import CascaderItem from './cascader-items'
+import db from './db'
+
+function ajax (parentId = 0) {
+  return db.filter(item => item.parent_id === parentId)
+}
+
+console.log(ajax())
+
 export default {
   name: 'app',
   components: {
@@ -43,53 +51,7 @@ export default {
   data () {
     return {
       selected: [],
-      source: [
-        {
-          name: '浙江',
-          children: [
-            {
-              name: '杭州',
-              children: [
-                { name: '上城' },
-                { name: '下城' },
-                { name: '江干' }
-              ]
-            }
-          ]
-        },
-        {
-          name: '江苏',
-          children: [
-            {
-              name: '南京',
-              children: [
-                { name: '玄武' },
-                { name: '鼓楼' },
-                { name: '雨花' }
-              ]
-            },
-            {
-              name: '徐州'
-            }
-          ]
-        },
-        {
-          name: '河南',
-          children: [
-            {
-              name: '郑州',
-              children: [
-                { name: '金水' },
-                { name: '二七' }
-              ]
-            },
-            {
-              name: '洛阳',
-              children: []
-            }
-          ]
-        }
-      ]
+      source: ajax()
     }
   }
 }
