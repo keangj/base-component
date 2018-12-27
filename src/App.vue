@@ -1,11 +1,13 @@
 <template>
   <div id="app" style="padding: 100px;">
-    {{selected}}
     <b-cascader
-      :source="source"
+      :source.sync="source"
       :selected.sync="selected"
       popover-height="200px"
+      @update:selected="xxx"
+      :load-data="loadData"
     ></b-cascader>
+    {{source}}
   </div>
 </template>
 
@@ -36,7 +38,12 @@ import Cascader from './cascader'
 import db from './db'
 
 function ajax (parentId = 0) {
-  return db.filter(item => item.parent_id === parentId)
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      let result = db.filter(item => item.parent_id === parentId)
+      resolve(result)
+    }, 1000)
+  })
 }
 
 console.log(ajax())
@@ -51,7 +58,34 @@ export default {
   data () {
     return {
       selected: [],
-      source: ajax()
+      source: null
+    }
+  },
+  mounted () {
+    ajax(0)
+      .then(result => {
+      this.source = result
+    })
+  },
+  methods: {
+    xxx() {
+      ajax(this.selected[0].id)
+        .then(result => {
+          console.log(result)
+          console.log(this.source)
+          let lastLevelSelected = this.source.filter(item => {
+            return item.id === this.selected[0].id
+          })[0]
+          // lastLevelSelected.children = result
+          this.$set(lastLevelSelected, 'children', result)
+          console.log(lastLevelSelected)
+        })
+    },
+    loadData ({id}, updateSource) {
+      ajax(id)
+        .then(result => {
+          updateSource(result)
+        })
     }
   }
 }

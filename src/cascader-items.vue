@@ -12,6 +12,7 @@
         :items="rightItems"
         :height="height"
         :selected="selected"
+        :load-data="loadData"
         @update:selected="onUpdateSelected"
       ></b-cascader-items>
     </div>
@@ -34,6 +35,9 @@
         type: Array,
         default: () => []
       },
+      loadData: {
+        type: Function
+      },
       level: {
         type: Number,
         default: 0
@@ -41,11 +45,13 @@
     },
     computed: {
       rightItems () {
-        let currentSelected = this.selected[this.level]
-        if (currentSelected && currentSelected.children) {
-          return currentSelected.children
-        } else {
-          return null
+        if (this.selected[this.level]) {
+          let selected = this.items.filter(item => {
+            return item.name === this.selected[this.level].name
+          })[0]
+          if (selected && selected.children) {
+            return selected.children
+          }
         }
       }
     },
