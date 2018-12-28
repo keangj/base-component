@@ -8,6 +8,7 @@
         :items="source"
         :height="popoverHeight"
         :selected="selected"
+        :load-data="loadData"
         @update:selected="onUpdateSelected"
       ></Cascader-item>
     </div>
@@ -82,15 +83,12 @@
         let updateSource = result => {
           let sourceCopy = JSON.parse(JSON.stringify(this.source))
           let toUpdate = complex(sourceCopy, lastItem.id)
-          // if (result.length>0){
-
           toUpdate.children = result
-          // }
-          // this.$set(toUpdate, 'children', result)
           this.$emit('update:source', sourceCopy)
         }
-
-        this.loadData(lastItem, updateSource)
+        if (!lastItem.isLeaf) {
+          this.loadData && this.loadData(lastItem, updateSource)
+        }
       }
     }
   }

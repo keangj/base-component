@@ -42,6 +42,9 @@ function ajax (parentId = 0) {
   return new Promise((resolve) => {
     setTimeout(() => {
       let result = db.filter(item => item.parent_id === parentId)
+      result.forEach(node => {
+        node.isLeaf = db.filter(item => item.parent_id === node.id).length <= 0;
+      })
       resolve(result)
     }, 1000)
   })
@@ -65,6 +68,53 @@ export default {
       .then(result => {
       this.source = result
     })
+    // this.source = [
+    //   {
+    //     name: '浙江',
+    //     children: [
+    //       {
+    //         name: '杭州',
+    //         children: [
+    //           { name: '上城' },
+    //           { name: '下城' },
+    //           { name: '江干' }
+    //         ]
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     name: '江苏',
+    //     children: [
+    //       {
+    //         name: '南京',
+    //         children: [
+    //           { name: '玄武' },
+    //           { name: '鼓楼' },
+    //           { name: '雨花' }
+    //         ]
+    //       },
+    //       {
+    //         name: '徐州'
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     name: '河南',
+    //     children: [
+    //       {
+    //         name: '郑州',
+    //         children: [
+    //           { name: '金水' },
+    //           { name: '二七' }
+    //         ]
+    //       },
+    //       {
+    //         name: '洛阳',
+    //         children: []
+    //       }
+    //     ]
+    //   }
+    // ]
   },
   methods: {
     loadData ({id}, updateSource) {
