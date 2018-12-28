@@ -1,8 +1,5 @@
 <template>
   <div id="app" style="padding: 100px;">
-    <div v-for="item in selected">
-      {{item.name}} <span v-for="i in item.children">{{i.name}}</span>
-    </div>
     <b-cascader
       :source.sync="source"
       :selected.sync="selected"

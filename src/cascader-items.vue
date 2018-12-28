@@ -2,7 +2,7 @@
   <div class="cascader-item" :style="{height: height}">
     <div class="left">
       <div class="label" v-for="item in items" @click="onClickLabel(item)">
-        {{item.name}}
+        <span class="name">{{item.name}}</span>
         <icon class="icon" v-if="rightArrowVisible(item)" name="right"></icon>
       </div>
     </div>
@@ -90,8 +90,15 @@
       display: flex;
       align-items: center;
       padding: .3em 1em;
+      cursor: pointer;
+      &:hover {
+        background-color: $gray;
+      }
+      > .name {
+        margin-right: .5em;
+      }
       .icon {
-        margin-left: .5em;
+        margin-left: auto;
         transform: scale(.8);
       }
     }
