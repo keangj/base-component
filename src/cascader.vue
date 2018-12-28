@@ -82,7 +82,11 @@
         let updateSource = result => {
           let sourceCopy = JSON.parse(JSON.stringify(this.source))
           let toUpdate = complex(sourceCopy, lastItem.id)
+          // if (result.length>0){
+
           toUpdate.children = result
+          // }
+          // this.$set(toUpdate, 'children', result)
           this.$emit('update:source', sourceCopy)
         }
 

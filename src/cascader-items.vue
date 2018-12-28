@@ -46,9 +46,7 @@
     computed: {
       rightItems () {
         if (this.selected[this.level]) {
-          let selected = this.items.filter(item => {
-            return item.name === this.selected[this.level].name
-          })[0]
+          let selected = this.items.filter(item => item.name === this.selected[this.level].name)[0]
           if (selected && selected.children) {
             return selected.children
           }

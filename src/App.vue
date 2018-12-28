@@ -1,13 +1,14 @@
 <template>
   <div id="app" style="padding: 100px;">
+    <div v-for="item in selected">
+      {{item.name}} <span v-for="i in item.children">{{i.name}}</span>
+    </div>
     <b-cascader
       :source.sync="source"
       :selected.sync="selected"
       popover-height="200px"
-      @update:selected="xxx"
       :load-data="loadData"
     ></b-cascader>
-    {{source}}
   </div>
 </template>
 
@@ -46,8 +47,6 @@ function ajax (parentId = 0) {
   })
 }
 
-console.log(ajax())
-
 export default {
   name: 'app',
   components: {
@@ -68,19 +67,6 @@ export default {
     })
   },
   methods: {
-    xxx() {
-      ajax(this.selected[0].id)
-        .then(result => {
-          console.log(result)
-          console.log(this.source)
-          let lastLevelSelected = this.source.filter(item => {
-            return item.id === this.selected[0].id
-          })[0]
-          // lastLevelSelected.children = result
-          this.$set(lastLevelSelected, 'children', result)
-          console.log(lastLevelSelected)
-        })
-    },
     loadData ({id}, updateSource) {
       ajax(id)
         .then(result => {
