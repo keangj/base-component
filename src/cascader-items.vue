@@ -91,6 +91,7 @@
       align-items: center;
       padding: .3em 1em;
       cursor: pointer;
+      white-space: nowrap;
       &:hover {
         background-color: $gray;
       }
