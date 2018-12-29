@@ -54,14 +54,6 @@
   $button-height: 32px;
   $button-bg: #fff;
   $button-active-bg: #eee;
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
 
   .b-button {
     display: inline-flex;

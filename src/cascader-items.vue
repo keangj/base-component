@@ -3,7 +3,14 @@
     <div class="left">
       <div class="label" v-for="item in items" @click="onClickLabel(item)">
         <span class="name">{{item.name}}</span>
-        <icon class="icon" v-if="rightArrowVisible(item)" name="right"></icon>
+        <span class="icons">
+          <template v-if="item.name === loadingItem.name">
+            <icon class="loading" name="loading"></icon>
+          </template>
+          <template v-else>
+            <icon class="arrow" v-if="rightArrowVisible(item)" name="right"></icon>
+          </template>
+        </span>
       </div>
     </div>
     <div class="right" v-if="rightItems">
@@ -13,6 +20,7 @@
         :height="height"
         :selected="selected"
         :load-data="loadData"
+        :loading-item="loadingItem"
         @update:selected="onUpdateSelected"
       ></b-cascader-items>
     </div>
@@ -37,6 +45,10 @@
       },
       loadData: {
         type: Function
+      },
+      loadingItem: {
+        type: Object,
+        default: () => ({})
       },
       level: {
         type: Number,
@@ -98,9 +110,14 @@
       > .name {
         margin-right: .5em;
       }
-      .icon {
-        margin-left: auto;
-        transform: scale(.8);
+      .icons {
+          margin-left: auto;
+        .arrow {
+          transform: scale(.8);
+        }
+        .loading {
+          animation: spin .8s infinite linear;
+        }
       }
     }
   }
