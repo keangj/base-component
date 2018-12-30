@@ -1,4 +1,4 @@
-import Toast from '../src/toast'
+import Toast from '../../src/toast'
 import Vue from 'vue'
 const expect = chai.expect
 

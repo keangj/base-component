@@ -1,11 +1,11 @@
-import Popover from '../src/popover'
-import Vue from 'vue'
-const expect = chai.expect
+import Popover from '../../src/popover'
+import chai, { expect } from 'chai'
+import { shallowMount, mount } from '@vue/test-utils'
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
+chai.use(sinonChai)
 
-Vue.config.productionTip = false
-Vue.config.devtools = false
-
-describe('Popover', () => {
+describe('Popover.vue', () => {
   it('存在.', () => {
     expect(Popover).to.be.exist
   })
