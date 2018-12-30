@@ -1,36 +1,39 @@
-import Popover from '../../src/popover'
-import chai, { expect } from 'chai'
-import { shallowMount, mount } from '@vue/test-utils'
-import sinon from 'sinon'
-import sinonChai from 'sinon-chai'
-chai.use(sinonChai)
+import Popover from '@/popover'
+import { expect } from 'chai'
+import { mount } from '@vue/test-utils'
 
 describe('Popover.vue', () => {
   it('存在.', () => {
     expect(Popover).to.be.exist
   })
-  it('接收 position', (done) => {
-    Vue.component('b-popover', Popover)
-    const div = document.createElement('div')
-    document.body.appendChild(div)
-    div.innerHTML = `
-      <b-popover position="top" ref="popover">
-      <template slot="content">
-        <div>popover 内容</div>
-      </template>
-      <template>
-        <button>click me</button>
-      </template>
-    </b-popover>
-    `
-    const vm = new Vue({
-      el: div
+  it('接收 position', () => {
+    const wrapper = mount(Popover, {
+      slots: {
+        default: {template: '<button>click me</button>'},
+        content: '<div>popover content</div>'
+      },
+      propsData: {
+        position: 'right'
+      }
     })
-    vm.$el.querySelector('button').click()
-    vm.$nextTick(() => {
-      const { contentWrapper } = vm.$refs.popover.$refs
-      expect(contentWrapper.classList.contains('position-top')).to.be.true
-      done()
+    const button = wrapper.find('button')
+    button.trigger('click')
+    const classes =  wrapper.find('.content-wrapper').classes()
+    expect(classes).to.includes('position-right')
+  })
+  it('接收 trigger', () => {
+    const wrapper = mount(Popover, {
+      slots: {
+        default: {template: '<button>click me</button>'},
+        content: '<div>popover content</div>'
+      },
+      propsData: {
+        position: 'right',
+        trigger: 'hover'
+      }
     })
+    expect(wrapper.find('.content-wrapper').element).to.not.exist
+    wrapper.find('.popover').trigger('mouseenter')
+    expect(wrapper.find('.content-wrapper').element).to.exist
   })
 })
