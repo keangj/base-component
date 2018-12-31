@@ -1,9 +1,9 @@
 import Input from '../../src/input'
-import Vue from 'vue'
-const expect = chai.expect
-
-Vue.config.productionTip = false
-Vue.config.devtools = false
+import chai, { expect } from 'chai'
+import { mount } from '@vue/test-utils'
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
+chai.use(sinonChai)
 
 describe('Input', () => {
   it('存在.', () => {
@@ -11,63 +11,62 @@ describe('Input', () => {
   })
 
   describe('props', () => {
-    const Constructor = Vue.extend(Input)
-    let vm
-
-    afterEach(function () {
-      vm.$destroy()
-    })
     it('接收value', () => {
-      vm = new Constructor({
+      const wrapper = mount(Input, {
         propsData: {
           value: 'val'
         }
-      }).$mount()
-      const inputElement = vm.$el.querySelector('input')
-      expect(inputElement.value).to.equal('val')
+      })
+      expect(wrapper.find('input').element.value).to.eq('val')
     })
+
     it('接收disabled', () => {
-      vm = new Constructor({
+      const wrapper = mount(Input, {
         propsData: {
           disabled: true
         }
-      }).$mount()
-      const inputElement = vm.$el.querySelector('input')
-      expect(inputElement.disabled).to.equal(true)
+      })
+      expect(wrapper.find('input').element.disabled).to.eq(true)
     })
+
     it('接收readonly', () => {
-      vm = new Constructor({
+      const wrapper = mount(Input, {
         propsData: {
           readonly: true
         }
-      }).$mount()
-      const inputElement = vm.$el.querySelector('input')
-      expect(inputElement.readOnly).to.equal(true)
+      })
+      expect(wrapper.find('input').element.readOnly).to.eq(true)
     })
+
     it('接收error', () => {
-      vm = new Constructor({
+      const wrapper = mount(Input, {
         propsData: {
           error: 'error'
         }
-      }).$mount()
-      const useElement = vm.$el.querySelector('use')
-      expect(useElement.getAttribute('xlink:href')).to.equal('#i-error')
-      const messageElement = vm.$el.querySelector('.error-message')
-      expect(messageElement.innerText).to.equal('error')
+      })
+      const useElement = wrapper.find('use')
+      expect(useElement.attributes()['href']).to.equal('#i-error')
+      expect(wrapper.find('.error-message').text()).to.eq('error')
     })
   })
   describe('支持event事件', () => {
-    const Constructor = Vue.extend(Input)
-    let vm
-
-    afterEach(function () {
-      // 在本区块的每个测试用例之前执行
-      vm.$destroy()
-    })
+    // const Constructor = Vue.extend(Input)
+    // let vm
+    //
+    // afterEach(function () {
+    //   // 在本区块的每个测试用例之前执行
+    //   vm.$destroy()
+    // })
     it('支持 change input focus blur', () => {
+      const wrapper = mount(Input, {
+        propsData: {
+          error: 'error'
+        }
+      })
+      let vm = wrapper.vm
       let events = ['change', 'input', 'focus', 'blur']
       events.forEach((eventName) => {
-        vm = new Constructor({}).$mount()
+        vm = wrapper.vm
         // 创建回调函数
         const callback = sinon.fake()
         // 监听事件
@@ -82,7 +81,7 @@ describe('Input', () => {
           }
         )
         // 获取 input 元素
-        let inputElement = vm.$el.querySelector('input')
+        let inputElement = wrapper.find('input').element
         // 调用事件
         inputElement.dispatchEvent(event)
         // 期望回调函数被调用

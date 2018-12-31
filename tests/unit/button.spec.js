@@ -43,8 +43,6 @@ describe('Button.vue', () => {
     }).$mount(div)
     const icon = vm.$el.querySelector('svg')
     expect(getComputedStyle(icon).order).to.eq('1')
-    vm.$el.remove()
-    vm.$destroy()
   })
   xit('设置 iconPosition 可以改变 order', () => {
     const div = document.createElement('div')
@@ -58,8 +56,6 @@ describe('Button.vue', () => {
     }).$mount(div)
     const icon = vm.$el.querySelector('svg')
     expect(getComputedStyle(icon).order).to.eq('2')
-    vm.$el.remove()
-    vm.$destroy()
   })
   it('点击 button 触发 click 事件', () => {
     const wrapper = mount(Button, {
