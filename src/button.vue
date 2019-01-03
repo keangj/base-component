@@ -45,15 +45,7 @@
 </script>
 
 <style lang="scss" type="text/scss" scoped>
-  /*@import "var";*/
-  $border-color: #999;
-  $border-color-hover: #666;
-  $border-radius: 4px;
-  $color: #333;
-  $font-size: 14px;
-  $button-height: 32px;
-  $button-bg: #fff;
-  $button-active-bg: #eee;
+  @import "var";
 
   .b-button {
     display: inline-flex;

@@ -51,9 +51,7 @@
 
 <style lang="scss" scoped>
   @import "var";
-  $tabs-height: 40px;
-  $color: rgb(24, 144, 255);
-  $disabled-color: #ccc;
+
   .tabs-item {
     display: flex;
     align-items: center;

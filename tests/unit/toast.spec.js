@@ -33,7 +33,7 @@ describe('Toast', () => {
         // done()
       })
     })
-    xit('可以设置 closeButton.', () => {
+    it('可以设置 closeButton.', () => {
       const callback = sinon.fake()
       const wrapper = mount(Toast, {
         propsData: {
@@ -44,7 +44,6 @@ describe('Toast', () => {
         }
       })
       // let vm = wrapper.vm
-      console.log(wrapper.find('.close').html())
       expect(wrapper.find('.close').text()).to.eq('关闭')
       // expect(wrapper.find('.content-wrapper').element).to.not.exist
       // wrapper.find('.popover').trigger('mouseenter')

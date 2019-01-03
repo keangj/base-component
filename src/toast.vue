@@ -85,10 +85,8 @@
 </script>
 
 <style lang="scss" scoped>
-$font-size: 14px;
-$toast-min-height: 40px;
-$toast-bg: rgba(0,0,0,0.74);
-$animation-duration: .5s;
+@import "var";
+
 @keyframes fade-in {
   0%{opacity: 0;}
   100%{opacity: 1;}
