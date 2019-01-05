@@ -1,16 +1,24 @@
 <template>
   <div id="app" style="padding: 100px;">
-    <b-cascader
-      :source.sync="source"
-      :selected.sync="selected"
-      popover-height="200px"
-      :load-data="loadData"
-    ></b-cascader>
+    <b-slides :selected.sync="selected" auto-play>
+      <b-slides-item name="aaa">
+        <div class="box">1</div>
+      </b-slides-item>
+      <b-slides-item name="bbb">
+        <div class="box">2</div>
+      </b-slides-item>
+      <b-slides-item name="ccc">
+        <div class="box">3</div>
+      </b-slides-item>
+      <b-slides-item name="ddd">
+        <div class="box">4</div>
+      </b-slides-item>
+    </b-slides>
   </div>
 </template>
 
 <script>
-// import Button from './button'
+import Button from './button'
 // import Icon from './icon'
 // import ButtonGroup from './button-group'
 // import Input from './input'
@@ -34,6 +42,8 @@
 import Cascader from './cascader'
 // import CascaderItem from './cascader-items'
 import db from './db'
+import Slides from './slides'
+import SlidesItem from './slides-item'
 
 function ajax (parentId = 0) {
   return new Promise((resolve) => {
@@ -50,17 +60,25 @@ function ajax (parentId = 0) {
 export default {
   name: 'app',
   components: {
-    // 'b-button': Button,
-    'b-cascader': Cascader
-    // 'b-cascader-items': CascaderItem
+    'b-button': Button,
+    'b-cascader': Cascader,
+    'b-slides': Slides,
+    'b-slides-item': SlidesItem,
+
   },
   data () {
     return {
-      selected: [],
+      selected: 'aaa',
       source: null
     }
   },
   mounted () {
+    // let n = 1
+    // setInterval(() => {
+    //   this.selected = n.toString()
+    //   n += 1
+    //   console.log(this.selected)
+    // }, 2000)
     ajax(0)
       .then(result => {
       this.source = result
@@ -138,5 +156,11 @@ export default {
   }
   body {
     font-size: var(--font-size);
+  }
+  .box {
+    width: 222px;
+    height: 111px;
+    background: #ddd;
+    border: 1px solid green;
   }
 </style>
