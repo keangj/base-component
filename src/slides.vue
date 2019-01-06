@@ -1,7 +1,18 @@
 <template>
   <div class="b-slides">
     <div class="b-slides-window">
-      <slot></slot>
+      <div class="b-slides-wrapper">
+        <slot></slot>
+      </div>
+    </div>
+    <div class="b-slides-dots">
+      <span
+        v-for="n in childrenLength"
+        :class="{active: selectIndex === n-1}"
+        @click="select(n-1)"
+      >
+        {{ n }}
+      </span>
     </div>
   </div>
 </template>
@@ -13,17 +24,30 @@
       selected: String,
       autoPlay: Boolean
     },
+    data () {
+      return {
+        childrenLength: 0
+      }
+    },
+    computed: {
+      names () {
+        return this.$children.map(child => child.name)
+      },
+      selectIndex () {
+        return this.names.indexOf(this.selected) || 0
+      }
+    },
     mounted () {
       this.updateSelected()
       this.playAutomatically()
+      this.childrenLength = this.$children.length
     },
     updated () {
       this.updateSelected()
     },
     methods: {
       playAutomatically () {
-        const names = this.$children.map(child => child.name)
-        let index = names.indexOf(this.getSelected())
+        let index = this.names.indexOf(this.getSelected())
         // let run = () => {
         //   if (index === names.length) {
         //     index = 0
@@ -34,9 +58,9 @@
         // }
         let run = () => {
           let newIndex = index - 1
-          if (newIndex === -1) { newIndex = names.length - 1}
-          if (newIndex === names.length) { newIndex = 0 }
-          this.$emit('update:selected', names[newIndex])
+          if (newIndex === -1) { newIndex = this.names.length - 1}
+          if (newIndex === this.names.length) { newIndex = 0 }
+          this.$emit('update:selected', this.names[newIndex])
           // index--
           setTimeout(run, 3000)
         }
@@ -49,11 +73,13 @@
         let selected = this.getSelected()
         this.$children.forEach(child => {
           child.selected = selected
-          const names = this.$children.map(child => child.name)
-          let oldIndex = names.indexOf(child.name)
-          let newIndex = names.indexOf(selected)
+          let oldIndex = this.names.indexOf(child.name)
+          let newIndex = this.names.indexOf(selected)
           child.reverse = newIndex <= oldIndex
         })
+      },
+      select (index) {
+        this.$emit('update:selected', this.names[index])
       }
     }
   }
@@ -61,10 +87,17 @@
 
 <style lang="scss" scoped>
   .b-slides {
-    display: inline-block;
-    .b-slides-window {
+    /*display: inline-block;*/
+    &-window {
       overflow: hidden;
+    }
+    &-wrapper {
       position: relative;
+    }
+    &-dots {
+      > .active {
+        background-color: #6a8bad;
+      }
     }
   }
 </style>

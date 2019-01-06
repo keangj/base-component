@@ -158,8 +158,8 @@ export default {
     font-size: var(--font-size);
   }
   .box {
-    width: 222px;
-    height: 111px;
+    width: 100%;
+    height: 511px;
     background: #ddd;
     border: 1px solid green;
   }
