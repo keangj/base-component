@@ -26,7 +26,8 @@
     },
     data () {
       return {
-        childrenLength: 0
+        childrenLength: 0,
+        lastSelectIndex: 0
       }
     },
     computed: {
@@ -60,11 +61,11 @@
           let newIndex = index - 1
           if (newIndex === -1) { newIndex = this.names.length - 1}
           if (newIndex === this.names.length) { newIndex = 0 }
-          this.$emit('update:selected', this.names[newIndex])
+          this.select(newIndex)
           // index--
           setTimeout(run, 3000)
         }
-        setTimeout(run, 3000)
+        // setTimeout(run, 3000)
       },
       getSelected () {
         return this.selected || this.$children[0].name
@@ -72,13 +73,14 @@
       updateSelected () {
         let selected = this.getSelected()
         this.$children.forEach(child => {
-          child.selected = selected
-          let oldIndex = this.names.indexOf(child.name)
-          let newIndex = this.names.indexOf(selected)
-          child.reverse = newIndex <= oldIndex
+          child.reverse = this.selectIndex > this.lastSelectIndex ? false : true
+          this.$nextTick(() => {
+            child.selected = selected
+          })
         })
       },
       select (index) {
+        this.lastSelectIndex = this.selectIndex
         this.$emit('update:selected', this.names[index])
       }
     }
