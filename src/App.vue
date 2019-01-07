@@ -5,13 +5,13 @@
         <div class="box">1</div>
       </b-slides-item>
       <b-slides-item name="bbb">
-        <div class="box">2</div>
+        <div class="box x">2</div>
       </b-slides-item>
       <b-slides-item name="ccc">
         <div class="box">3</div>
       </b-slides-item>
       <b-slides-item name="ddd">
-        <div class="box">4</div>
+        <div class="box x">4</div>
       </b-slides-item>
     </b-slides>
   </div>
@@ -160,6 +160,9 @@ export default {
   .box {
     width: 100%;
     height: 511px;
-    background: #ddd;
+    background-color: #d3dce6;
+  }
+  .x {
+    background-color: #ddd;
   }
 </style>

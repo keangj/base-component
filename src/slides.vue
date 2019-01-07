@@ -66,8 +66,8 @@
         if (this.timerId) { return }
         let run = () => {
           let index = this.names.indexOf(this.getSelected())
-          let newIndex = index - 1
-          if (newIndex === -1) { newIndex = this.names.length - 1}
+          let newIndex = index + 1
+          if (newIndex === -1) { newIndex = this.names.length + 1}
           if (newIndex === this.names.length) { newIndex = 0 }
           this.select(newIndex)
           this.timerId = setTimeout(run, 3000)
@@ -80,7 +80,14 @@
       updateSelected () {
         let selected = this.getSelected()
         this.$children.forEach(child => {
-          child.reverse = this.selectIndex <= this.lastSelectIndex
+          let reverse = this.selectIndex <= this.lastSelectIndex
+          if (this.lastSelectIndex === this.$children.length - 1 && this.selectIndex === 0) {
+            reverse = false
+          }
+          if (this.lastSelectIndex === 0 && this.selectIndex === this.$children.length - 1) {
+            reverse = true
+          }
+          child.reverse = reverse
           this.$nextTick(() => {
             child.selected = selected
           })
