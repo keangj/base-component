@@ -81,11 +81,13 @@
         let selected = this.getSelected()
         this.$children.forEach(child => {
           let reverse = this.selectIndex <= this.lastSelectIndex
-          if (this.lastSelectIndex === this.$children.length - 1 && this.selectIndex === 0) {
-            reverse = false
-          }
-          if (this.lastSelectIndex === 0 && this.selectIndex === this.$children.length - 1) {
-            reverse = true
+          if (this.timerId) {
+            if (this.lastSelectIndex === this.$children.length - 1 && this.selectIndex === 0) {
+              reverse = false
+            }
+            if (this.lastSelectIndex === 0 && this.selectIndex === this.$children.length - 1) {
+              reverse = true
+            }
           }
           child.reverse = reverse
           this.$nextTick(() => {
