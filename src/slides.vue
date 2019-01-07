@@ -1,5 +1,9 @@
 <template>
-  <div class="b-slides">
+  <div
+    class="b-slides"
+    @mouseenter="onMouseEnter"
+    @mouseleave="onMouseLeave"
+  >
     <div class="b-slides-window">
       <div class="b-slides-wrapper">
         <slot></slot>
@@ -27,7 +31,8 @@
     data () {
       return {
         childrenLength: 0,
-        lastSelectIndex: 0
+        lastSelectIndex: 0,
+        timerId: undefined
       }
     },
     computed: {
@@ -47,25 +52,27 @@
       this.updateSelected()
     },
     methods: {
+      pause () {
+        window.clearTimeout(this.timerId)
+        this.timerId = undefined
+      },
+      onMouseEnter () {
+        this.pause()
+      },
+      onMouseLeave () {
+        this.playAutomatically()
+      },
       playAutomatically () {
-        let index = this.names.indexOf(this.getSelected())
-        // let run = () => {
-        //   if (index === names.length) {
-        //     index = 0
-        //   }
-        //   this.$emit('update:selected', names[index + 1])
-        //   index++
-        //   setTimeout(run, 3000)
-        // }
+        if (this.timerId) { return }
         let run = () => {
+          let index = this.names.indexOf(this.getSelected())
           let newIndex = index - 1
           if (newIndex === -1) { newIndex = this.names.length - 1}
           if (newIndex === this.names.length) { newIndex = 0 }
           this.select(newIndex)
-          // index--
-          setTimeout(run, 3000)
+          this.timerId = setTimeout(run, 3000)
         }
-        // setTimeout(run, 3000)
+        this.timerId = setTimeout(run, 3000)
       },
       getSelected () {
         return this.selected || this.$children[0].name
@@ -73,7 +80,7 @@
       updateSelected () {
         let selected = this.getSelected()
         this.$children.forEach(child => {
-          child.reverse = this.selectIndex > this.lastSelectIndex ? false : true
+          child.reverse = this.selectIndex <= this.lastSelectIndex
           this.$nextTick(() => {
             child.selected = selected
           })
@@ -89,7 +96,6 @@
 
 <style lang="scss" scoped>
   .b-slides {
-    /*display: inline-block;*/
     &-window {
       overflow: hidden;
     }

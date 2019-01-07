@@ -161,6 +161,5 @@ export default {
     width: 100%;
     height: 511px;
     background: #ddd;
-    border: 1px solid green;
   }
 </style>

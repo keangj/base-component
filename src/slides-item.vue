@@ -35,22 +35,18 @@
     height: 100%;
   }
   .slide-enter-active, .slide-leave-active {
-    transition: all 1s;
+    transition: all .5s;
   }
   .slide-enter {
     transform: translateX(100%);
-
   }
   .slide-enter.reverse {
     transform: translateX(-100%);
-    border-color: #3a5169;
   }
   .slide-leave-to {
     transform: translateX(-100%);
-
   }
   .slide-leave-to.reverse {
     transform: translateX(100%);
-    border-color: #3a5169;
   }
 </style>
