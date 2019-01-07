@@ -67,7 +67,7 @@
         let run = () => {
           let index = this.names.indexOf(this.getSelected())
           let newIndex = index + 1
-          if (newIndex === -1) { newIndex = this.names.length + 1}
+          if (newIndex === -1) { newIndex = this.names.length + 1 }
           if (newIndex === this.names.length) { newIndex = 0 }
           this.select(newIndex)
           this.timerId = setTimeout(run, 3000)
@@ -112,9 +112,34 @@
       position: relative;
     }
     &-dots {
-      > .active {
-        background-color: #6a8bad;
+      display: flex;
+      justify-content: center;
+      justify-items: center;
+      margin-top: 8px;
+      > span {
+        display: inline-flex;
+        justify-content: center;
+        justify-items: center;
+        margin: 0 .2em;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        color: #000;
+        background-color: #ddd;
+        font-size: 12px;
+        line-height: 20px;
+        /*opacity: .3;*/
+        &:hover {
+          cursor: pointer;
+        }
+        &.active {
+          background-color: #6a8bad;
+          &:hover {
+            cursor: default;
+          }
+        }
       }
+
     }
   }
 </style>
