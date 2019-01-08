@@ -3,6 +3,8 @@
     class="b-slides"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
+    @touchstart="onTouchStart"
+    @touchend="onTouchEnd"
   >
     <div class="b-slides-window">
       <div class="b-slides-wrapper">
@@ -12,7 +14,7 @@
     <div class="b-slides-dots">
       <span
         v-for="n in childrenLength"
-        :class="{active: selectIndex === n-1}"
+        :class="{active: selectedIndex === n-1}"
         @click="select(n-1)"
       >
         {{ n }}
@@ -31,16 +33,19 @@
     data () {
       return {
         childrenLength: 0,
-        lastSelectIndex: 0,
-        timerId: undefined
+        lastSelectIndex: undefined,
+        timerId: undefined,
+        startTouch: undefined,
+        endTouch: undefined
       }
     },
     computed: {
       names () {
         return this.$children.map(child => child.name)
       },
-      selectIndex () {
-        return this.names.indexOf(this.selected) || 0
+      selectedIndex () {
+        let index = this.names.indexOf(this.selected)
+        return index === -1 ? 0 : index
       }
     },
     mounted () {
@@ -62,13 +67,37 @@
       onMouseLeave () {
         this.playAutomatically()
       },
+      onTouchStart (e) {
+        this.pause()
+        if (e.touches.length > 1) { return }
+        this.startTouch = e.touches[0]
+      },
+      onTouchEnd (e) {
+        console.log(this.endTouch)
+        this.endTouch = e.changedTouches[0]
+        let { clientX: x1 , clientY: y1 } = this.startTouch
+        let { clientX: x2 , clientY: y2 } = this.endTouch
+        // 起始至结束位置距离
+        let distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2))
+        // 两点 Y 轴距离
+        let deltaY = Math.abs(y2 - y1)
+        let rate = distance / deltaY
+        if (rate > 2) {
+          if (x2 > x1) {
+            this.select(this.selectedIndex - 1)
+          } else {
+            this.select(this.selectedIndex + 1)
+          }
+        }
+        this.$nextTick(() => {
+          this.playAutomatically()
+        })
+      },
       playAutomatically () {
         if (this.timerId) { return }
         let run = () => {
           let index = this.names.indexOf(this.getSelected())
           let newIndex = index + 1
-          if (newIndex === -1) { newIndex = this.names.length + 1 }
-          if (newIndex === this.names.length) { newIndex = 0 }
           this.select(newIndex)
           this.timerId = setTimeout(run, 3000)
         }
@@ -80,12 +109,12 @@
       updateSelected () {
         let selected = this.getSelected()
         this.$children.forEach(child => {
-          let reverse = this.selectIndex <= this.lastSelectIndex
+          let reverse = this.selectedIndex <= this.lastSelectIndex
           if (this.timerId) {
-            if (this.lastSelectIndex === this.$children.length - 1 && this.selectIndex === 0) {
+            if (this.lastSelectIndex === this.$children.length - 1 && this.selectedIndex === 0) {
               reverse = false
             }
-            if (this.lastSelectIndex === 0 && this.selectIndex === this.$children.length - 1) {
+            if (this.lastSelectIndex === 0 && this.selectedIndex === this.$children.length - 1) {
               reverse = true
             }
           }
@@ -95,9 +124,11 @@
           })
         })
       },
-      select (index) {
-        this.lastSelectIndex = this.selectIndex
-        this.$emit('update:selected', this.names[index])
+      select (newIndex) {
+        this.lastSelectIndex = this.selectedIndex
+        if (newIndex === -1) { newIndex = this.names.length - 1 }
+        if (newIndex === this.names.length) { newIndex = 0 }
+        this.$emit('update:selected', this.names[newIndex])
       }
     }
   }
