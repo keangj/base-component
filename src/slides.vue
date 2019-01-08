@@ -12,6 +12,9 @@
       </div>
     </div>
     <div class="b-slides-dots">
+      <span @click="select(selectedIndex - 1)">
+        <b-icon name="left"></b-icon>
+      </span>
       <span
         v-for="n in childrenLength"
         :class="{active: selectedIndex === n-1}"
@@ -19,13 +22,20 @@
       >
         {{ n }}
       </span>
+      <span @click="select(selectedIndex + 1)">
+        <b-icon name="right"></b-icon>
+      </span>
     </div>
   </div>
 </template>
 
 <script>
+  import Icon from './icon'
   export default {
     name: 'b-slides',
+    components: {
+      'b-icon': Icon
+    },
     props: {
       selected: String,
       autoPlay: Boolean
@@ -41,17 +51,21 @@
     },
     computed: {
       names () {
-        return this.$children.map(child => child.name)
+        return this.items.map(child => child.name)
       },
       selectedIndex () {
         let index = this.names.indexOf(this.selected)
         return index === -1 ? 0 : index
+      },
+      items () {
+        return this.$children.filter(item => item.$options.name === 'b-slides-item')
       }
     },
     mounted () {
+      console.log(this.items)
       this.updateSelected()
       this.playAutomatically()
-      this.childrenLength = this.$children.length
+      this.childrenLength = this.items.length
     },
     updated () {
       this.updateSelected()
@@ -104,17 +118,17 @@
         this.timerId = setTimeout(run, 3000)
       },
       getSelected () {
-        return this.selected || this.$children[0].name
+        return this.selected || this.items[0].name
       },
       updateSelected () {
         let selected = this.getSelected()
-        this.$children.forEach(child => {
+        this.items.forEach(child => {
           let reverse = this.selectedIndex <= this.lastSelectIndex
           if (this.timerId) {
-            if (this.lastSelectIndex === this.$children.length - 1 && this.selectedIndex === 0) {
+            if (this.lastSelectIndex === this.items.length - 1 && this.selectedIndex === 0) {
               reverse = false
             }
-            if (this.lastSelectIndex === 0 && this.selectedIndex === this.$children.length - 1) {
+            if (this.lastSelectIndex === 0 && this.selectedIndex === this.items.length - 1) {
               reverse = true
             }
           }
@@ -150,7 +164,7 @@
       > span {
         display: inline-flex;
         justify-content: center;
-        justify-items: center;
+        align-items: center;
         margin: 0 .2em;
         border-radius: 50%;
         width: 20px;
@@ -158,7 +172,6 @@
         color: #000;
         background-color: #ddd;
         font-size: 12px;
-        line-height: 20px;
         /*opacity: .3;*/
         &:hover {
           cursor: pointer;
