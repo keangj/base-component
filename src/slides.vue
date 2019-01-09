@@ -62,9 +62,10 @@
       }
     },
     mounted () {
-      console.log(this.items)
       this.updateSelected()
-      this.playAutomatically()
+      if (this.autoPlay) {
+        this.playAutomatically()
+      }
       this.childrenLength = this.items.length
     },
     updated () {
@@ -87,7 +88,6 @@
         this.startTouch = e.touches[0]
       },
       onTouchEnd (e) {
-        console.log(this.endTouch)
         this.endTouch = e.changedTouches[0]
         let { clientX: x1 , clientY: y1 } = this.startTouch
         let { clientX: x2 , clientY: y2 } = this.endTouch
