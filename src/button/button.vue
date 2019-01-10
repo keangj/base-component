@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import Icon from './icon'
+  import Icon from '../icon'
   export default {
     components: {
       'b-icon': Icon
@@ -45,7 +45,7 @@
 </script>
 
 <style lang="scss" type="text/scss" scoped>
-  @import "var";
+  @import "../var";
 
   .b-button {
     display: inline-flex;

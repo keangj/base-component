@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Button from './button'
+import Button from './button/button'
 // import Icon from './icon'
 // import ButtonGroup from './button-group'
 // import Input from './input'
@@ -39,11 +39,11 @@ import Button from './button'
 // import Popover from './popover'
 // import Collapse from './collapse'
 // import CollapseItem from './collapse-item'
-import Cascader from './cascader'
+import Cascader from './cascader/cascader'
 // import CascaderItem from './cascader-items'
-import db from './db'
-import Slides from './slides'
-import SlidesItem from './slides-item'
+import db from '../tests/fixtures/db'
+import Slides from './slides/slides'
+import SlidesItem from './slides/slides-item'
 
 function ajax (parentId = 0) {
   return new Promise((resolve) => {

@@ -1,5 +1,5 @@
-import Col from '../../src/col'
-import Row from '../../src/row'
+import Col from '../../src/grid/col'
+import Row from '../../src/grid/row'
 import Vue from 'vue'
 const expect = chai.expect
 
