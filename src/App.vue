@@ -1,19 +1,11 @@
 <template>
   <div id="app" style="padding: 100px;">
-    <b-slides :selected.sync="selected" auto-play>
-      <b-slides-item name="aaa">
-        <div class="box">1</div>
-      </b-slides-item>
-      <b-slides-item name="bbb">
-        <div class="box x">2</div>
-      </b-slides-item>
-      <b-slides-item name="ccc">
-        <div class="box">3</div>
-      </b-slides-item>
-      <b-slides-item name="ddd">
-        <div class="box x">4</div>
-      </b-slides-item>
-    </b-slides>
+    <b-nav :selected.sync="selected" >
+      <b-nav-item name="1">aaa</b-nav-item>
+      <b-nav-item name="2">bbb</b-nav-item>
+      <b-nav-item name="3">ccc</b-nav-item>
+      <b-nav-item name="4">ddd</b-nav-item>
+    </b-nav>
   </div>
 </template>
 
@@ -44,6 +36,9 @@ import Cascader from './cascader/cascader'
 import db from '../tests/fixtures/db'
 import Slides from './slides/slides'
 import SlidesItem from './slides/slides-item'
+import Nav from './nav/nav'
+import SubNav from './nav/sub-nav'
+import NavItem from './nav/nav-item'
 
 function ajax (parentId = 0) {
   return new Promise((resolve) => {
@@ -64,11 +59,13 @@ export default {
     'b-cascader': Cascader,
     'b-slides': Slides,
     'b-slides-item': SlidesItem,
-
+    'b-nav': Nav,
+    'b-sub-nav': SubNav,
+    'b-nav-item': NavItem,
   },
   data () {
     return {
-      selected: 'aaa',
+      selected: ['1'],
       source: null
     }
   },
