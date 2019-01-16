@@ -2,7 +2,12 @@
   <div id="app" style="padding: 100px;">
     <b-nav :selected.sync="selected" >
       <b-nav-item name="1">aaa</b-nav-item>
-      <b-nav-item name="2">bbb</b-nav-item>
+        <b-sub-nav>
+          <template slot="title">bbb</template>
+          <b-nav-item name="a">111</b-nav-item>
+          <b-nav-item name="b">222</b-nav-item>
+          <b-nav-item name="c">333</b-nav-item>
+        </b-sub-nav>
       <b-nav-item name="3">ccc</b-nav-item>
       <b-nav-item name="4">ddd</b-nav-item>
     </b-nav>
@@ -65,7 +70,7 @@ export default {
   },
   data () {
     return {
-      selected: ['1'],
+      selected: ['b'],
       source: null
     }
   },

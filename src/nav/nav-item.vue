@@ -11,6 +11,7 @@
 <script>
   export default {
     name: 'NavItem',
+    inject: ['root'],
     props: {
       name: {
         type: String,
@@ -21,6 +22,9 @@
       return {
         selected: false
       }
+    },
+    created () {
+      this.root.addItem(this)
     },
     methods: {
       onClick () {
