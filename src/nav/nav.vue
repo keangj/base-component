@@ -36,16 +36,15 @@
     },
     methods: {
       addItem (vm) {
-        console.log(vm)
         this.items.push(vm)
       },
       updateChildren () {
         this.items.forEach(vm => {
-          vm.selected = this.selected.indexOf(vm.name) !== -1;
+          vm.selected = this.selected.indexOf(vm.name) !== -1
         })
       },
       listenToChildren () {
-        this.$children.forEach(vm => {
+        this.items.forEach(vm => {
           vm.$on('add:selected', name => {
             if (this.multiple) {
               let copy = JSON.parse(JSON.stringify(this.selected))

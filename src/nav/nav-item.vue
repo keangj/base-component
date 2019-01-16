@@ -36,7 +36,7 @@
 
 <style lang="scss" scoped>
   .b-nav-item {
-    padding: 4px 8px;
+    padding: 10px 20px;
     &.selected {
       background-color: #4abf8a;
     }

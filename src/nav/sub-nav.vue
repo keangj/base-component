@@ -1,9 +1,15 @@
 <template>
   <div class="b-sub-nav">
-    <span class="b-sub-nav-label">
+    <span
+      class="b-sub-nav-label"
+      @click="onClick"
+    >
       <slot name="title"></slot>
     </span>
-    <div class="b-sub-nav-popover">
+    <div
+      class="b-sub-nav-popover"
+      v-show="open"
+    >
       <slot></slot>
     </div>
   </div>
@@ -11,17 +17,26 @@
 
 <script>
   export default {
-    name: 'SubNav'
+    name: 'SubNav',
+    data () {
+      return {
+        open: false
+      }
+    },
+    methods: {
+      onClick () {
+        this.open = !this.open
+      }
+    }
   }
 </script>
 
 <style lang="scss" scoped>
   .b-sub-nav {
     position: relative;
-
     .b-sub-nav-label {
       display: block;
-      padding: 4px 8px;
+      padding: 10px 20px;
     }
     .b-sub-nav-popover {
       position: absolute;
