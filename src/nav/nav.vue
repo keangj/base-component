@@ -61,8 +61,9 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "../var";
   .b-nav {
     display: flex;
-    border: 1px solid red;
+    border-bottom: 1px solid $gray;
   }
 </style>

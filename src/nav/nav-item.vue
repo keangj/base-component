@@ -35,10 +35,29 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "../var";
   .b-nav-item {
+    position: relative;
     padding: 10px 20px;
     &.selected {
-      background-color: #4abf8a;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        border-bottom: 2px solid $blue;
+        width: 100%;
+      }
+    }
+  }
+  .b-sub-nav .b-nav-item {
+    &.selected {
+      color: $blue;
+      background-color: $gray;
+      &::after {
+        display: none;
+      }
     }
   }
 </style>

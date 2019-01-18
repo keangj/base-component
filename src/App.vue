@@ -3,10 +3,22 @@
     <b-nav :selected.sync="selected" >
       <b-nav-item name="1">aaa</b-nav-item>
         <b-sub-nav>
-          <template slot="title">bbb</template>
-          <b-nav-item name="a">111</b-nav-item>
-          <b-nav-item name="b">222</b-nav-item>
-          <b-nav-item name="c">333</b-nav-item>
+          <template slot="title">111</template>
+          <b-nav-item name="a1">111</b-nav-item>
+          <b-nav-item name="a2">111</b-nav-item>
+          <b-nav-item name="a3">111</b-nav-item>
+          <b-sub-nav>
+            <template slot="title">222</template>
+            <b-nav-item name="b1">222</b-nav-item>
+            <b-nav-item name="b2">222</b-nav-item>
+            <b-nav-item name="b3">222</b-nav-item>
+            <b-sub-nav>
+              <template slot="title">333</template>
+              <b-nav-item name="c1">333</b-nav-item>
+              <b-nav-item name="c2">333</b-nav-item>
+              <b-nav-item name="c3">333</b-nav-item>
+            </b-sub-nav>
+          </b-sub-nav>
         </b-sub-nav>
       <b-nav-item name="3">ccc</b-nav-item>
       <b-nav-item name="4">ddd</b-nav-item>

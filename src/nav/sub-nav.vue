@@ -32,18 +32,29 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "../var";
   .b-sub-nav {
     position: relative;
-    .b-sub-nav-label {
+    &-label {
       display: block;
       padding: 10px 20px;
     }
-    .b-sub-nav-popover {
+    &-popover {
       position: absolute;
       top: 100%;
       left: 0;
-      border: 1px solid yellow;
+      margin-top: 4px;
+      min-width: 6em;
       background-color: #fff;
+      box-shadow: 0 0 3px $box-shadow-color2;
+      font-size: $font-size;
+      color: $font-color;
     }
+  }
+  .b-sub-nav .b-sub-nav .b-sub-nav-popover {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-left: 4px;
   }
 </style>

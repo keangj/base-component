@@ -4,19 +4,22 @@ $border-color: #333;
 $border-color-light: lighten($border-color, 10%);
 $border-radius: 4px;
 $box-shadow-color: rgba(0, 0, 0, 0.5);
+$box-shadow-color2: fade_out(#000, 0.8);
 $button-active-bg: #eee;
 $button-bg: #fff;
 $button-height: 32px;
 $color: #333;
 $color: rgb(24, 144, 255);
+$blue: #5cadff;
 $disabled-color: #ccc;
-$font-size: 14px;
+$font-size: 12px;
 $gray: #eee;
 $height: 32px;
 $red: #ed4014;
 $tabs-height: 40px;
 $toast-bg: rgba(0,0,0,0.74);
 $toast-min-height: 40px;
+$font-color: #444;
 
 .box-shadow {
   box-shadow: 0 0 3px rgba(0, 0, 0, .15);
