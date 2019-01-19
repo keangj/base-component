@@ -5,6 +5,9 @@
       @click="onClick"
     >
       <slot name="title"></slot>
+      <span class="b-sub-nav-icon" :class="{open}">
+        <b-icon name="right"></b-icon>
+      </span>
     </span>
     <div
       class="b-sub-nav-popover"
@@ -16,9 +19,12 @@
 </template>
 
 <script>
+  import BIcon from '../icon'
+
   export default {
     name: 'SubNav',
     inject: ['root'],
+    components: { 'b-icon': BIcon},
     props: {
       name: {
         type: String,
@@ -62,8 +68,13 @@
         width: 100%;
       }
     }
+    &-icon {
+      display: none;
+    }
     &-label {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 10px 20px;
     }
     &-popover {
@@ -79,10 +90,26 @@
       color: $font-color;
     }
   }
-  .b-sub-nav .b-sub-nav .b-sub-nav-popover {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    margin-left: 4px;
+  .b-sub-nav .b-sub-nav {
+    &.active {
+      color: $blue;
+      background-color: $gray;
+      &::after {
+        display: none;
+      }
+    }
+    .b-sub-nav-popover {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      margin-left: 4px;
+    }
+    .b-sub-nav-icon {
+      display: inline-flex;
+      transition: transform 300ms;
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
   }
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div class="b-nav">
     <slot></slot>
-    {{namePath}}
   </div>
 </template>
 
@@ -68,6 +67,5 @@
     display: flex;
     border-bottom: 1px solid $gray;
     cursor: pointer;
-
   }
 </style>
