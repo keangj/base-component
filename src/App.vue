@@ -2,17 +2,17 @@
   <div id="app" style="padding: 100px;">
     <b-nav :selected.sync="selected" >
       <b-nav-item name="1">aaa</b-nav-item>
-        <b-sub-nav>
+        <b-sub-nav name="a">
           <template slot="title">111</template>
           <b-nav-item name="a1">111</b-nav-item>
           <b-nav-item name="a2">111</b-nav-item>
           <b-nav-item name="a3">111</b-nav-item>
-          <b-sub-nav>
+          <b-sub-nav name="b">
             <template slot="title">222</template>
             <b-nav-item name="b1">222</b-nav-item>
             <b-nav-item name="b2">222</b-nav-item>
             <b-nav-item name="b3">222</b-nav-item>
-            <b-sub-nav>
+            <b-sub-nav name="c">
               <template slot="title">333</template>
               <b-nav-item name="c1">333</b-nav-item>
               <b-nav-item name="c2">333</b-nav-item>
