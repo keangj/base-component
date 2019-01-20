@@ -9,12 +9,31 @@
         <b-icon name="right"></b-icon>
       </span>
     </span>
-    <div
-      class="b-sub-nav-popover"
-      v-show="open"
-    >
-      <slot></slot>
-    </div>
+    <template v-if="vertical">
+      <transition
+        @enter="enter"
+        @after-enter="afterEnter"
+        @leave="leave"
+        @after-leave="afterLeave"
+      >
+        <div
+          class="b-sub-nav-popover"
+          :class="{vertical}"
+          v-show="open"
+        >
+          <slot></slot>
+        </div>
+      </transition>
+    </template>
+    <template v-else>
+      <div
+        class="b-sub-nav-popover"
+        :class="{vertical}"
+        v-show="open"
+      >
+        <slot></slot>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -23,8 +42,8 @@
 
   export default {
     name: 'SubNav',
-    inject: ['root'],
-    components: { 'b-icon': BIcon},
+    inject: ['root', 'vertical'],
+    components: { 'b-icon': BIcon },
     props: {
       name: {
         type: String,
@@ -42,6 +61,30 @@
       }
     },
     methods: {
+      enter (el, done) {
+        let { height } = el.getBoundingClientRect()
+        el.style.height = 0
+        el.getBoundingClientRect() // 触发属性变化
+        el.style.height = `${height}px`
+        el.addEventListener('transitionend', () => {
+          done()
+        })
+      },
+      afterEnter (el) {
+        el.style.height = 'auto'
+      },
+      leave (el, done) {
+        let { height } = el.getBoundingClientRect()
+        el.style.height = `${height}px`
+        el.getBoundingClientRect() // 触发属性变化
+        el.style.height = 0
+        el.addEventListener('transitionend', () => {
+          done()
+        })
+      },
+      afterLeave (el) {
+        el.style.height = 'auto'
+      },
       onClick () {
         this.open = !this.open
       },
@@ -57,6 +100,7 @@
   @import "../var";
   .b-sub-nav {
     position: relative;
+    background-color: #fff;
     &.active {
       &::after {
         content: '';
@@ -88,6 +132,13 @@
       box-shadow: 0 0 3px $box-shadow-color2;
       font-size: $font-size;
       color: $font-color;
+      transition: height 250ms;
+      &.vertical {
+        position: static;
+        border-radius: 0;
+        box-shadow: none;
+        overflow: hidden;
+      }
     }
   }
   .b-sub-nav .b-sub-nav {
@@ -99,10 +150,12 @@
       }
     }
     .b-sub-nav-popover {
-      position: absolute;
       top: 0;
       left: 100%;
       margin-left: 4px;
+      &.vertical {
+        margin-left: 0;
+      }
     }
     .b-sub-nav-icon {
       display: inline-flex;

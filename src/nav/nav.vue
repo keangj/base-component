@@ -1,5 +1,5 @@
 <template>
-  <div class="b-nav">
+  <div class="b-nav" :class="{vertical}">
     <slot></slot>
   </div>
 </template>
@@ -9,7 +9,8 @@
     name: 'Nav',
     provide () {
       return {
-        root: this
+        root: this,
+        vertical: this.vertical
       }
     },
     props: {
@@ -18,6 +19,10 @@
         default: () => []
       },
       multiple: {
+        type: Boolean,
+        default: false
+      },
+      vertical: {
         type: Boolean,
         default: false
       }
@@ -67,5 +72,9 @@
     display: flex;
     border-bottom: 1px solid $gray;
     cursor: pointer;
+    &.vertical {
+      flex-direction: column;
+      border: 1px solid $gray;
+    }
   }
 </style>
