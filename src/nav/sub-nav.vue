@@ -1,7 +1,7 @@
 <template>
   <div
     class="b-sub-nav"
-    :class="{active}"
+    :class="{active, vertical}"
     v-click-outside="close"
   >
     <span
@@ -9,7 +9,7 @@
       @click="onClick"
     >
       <slot name="title"></slot>
-      <span class="b-sub-nav-icon" :class="{open}">
+      <span class="b-sub-nav-icon" :class="{open, vertical}">
         <b-icon name="right"></b-icon>
       </span>
     </span>
@@ -109,16 +109,17 @@
   @import "../var";
   .b-sub-nav {
     position: relative;
-    background-color: #fff;
-    &.active {
-      &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        border-bottom: 2px solid $blue;
-        width: 100%;
+    &:not(.vertical) {
+      &.active {
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          border-bottom: 2px solid $blue;
+          width: 100%;
+        }
       }
     }
     &-icon {
@@ -129,6 +130,9 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 20px;
+      &:hover {
+        color: $blue;
+      }
     }
     &-popover {
       position: absolute;
@@ -151,24 +155,29 @@
     }
   }
   .b-sub-nav .b-sub-nav {
-    &.active {
-      color: $blue;
-      background-color: $gray;
-      &::after {
-        display: none;
+    &:not(.vertical) {
+      &.active {
+        color: $blue;
+        background-color: $gray;
+        &::after {
+          display: none;
+        }
       }
     }
     .b-sub-nav-popover {
       top: 0;
       left: 100%;
-      margin-left: 4px;
-      &.vertical {
-        margin-left: 0;
-      }
+      margin-left: 8px;
     }
     .b-sub-nav-icon {
       display: inline-flex;
       transition: transform 300ms;
+      &.vertical {
+        transform: rotate(90deg);
+        &.open {
+          transform: rotate(270deg);
+        }
+      }
       &.open {
         transform: rotate(180deg);
       }

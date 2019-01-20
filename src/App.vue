@@ -24,7 +24,7 @@
       <b-nav-item name="4">ddd</b-nav-item>
     </b-nav>
     <b-nav :selected.sync="selected">
-      <b-nav-item name="1">aaa</b-nav-item>
+      <b-nav-item name="1"><a href="//baidu.com" target="_blank">aaa</a></b-nav-item>
         <b-sub-nav name="a">
           <template slot="title">111</template>
           <b-nav-item name="a1">111</b-nav-item>
@@ -46,6 +46,7 @@
       <b-nav-item name="3">ccc</b-nav-item>
       <b-nav-item name="4">ddd</b-nav-item>
     </b-nav>
+    {{selected}}
   </div>
 </template>
 
@@ -105,7 +106,7 @@ export default {
   },
   data () {
     return {
-      selected: ['b'],
+      selected: ['a'],
       source: null
     }
   },
