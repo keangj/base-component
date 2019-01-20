@@ -1,5 +1,9 @@
 <template>
-  <div class="b-sub-nav" :class="{active}">
+  <div
+    class="b-sub-nav"
+    :class="{active}"
+    v-click-outside="close"
+  >
     <span
       class="b-sub-nav-label"
       @click="onClick"
@@ -39,10 +43,12 @@
 
 <script>
   import BIcon from '../icon'
+  import clickOutside from '../click-outside'
 
   export default {
     name: 'SubNav',
     inject: ['root', 'vertical'],
+    directives: { clickOutside },
     components: { 'b-icon': BIcon },
     props: {
       name: {
@@ -91,6 +97,9 @@
       updateNamePath () {
         this.root.namePath.unshift(this.name)
         this.$parent.updateNamePath && this.$parent.updateNamePath()
+      },
+      close () {
+        this.open = false
       }
     }
   }
