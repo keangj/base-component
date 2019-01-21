@@ -3,6 +3,7 @@
     class="b-nav-item"
     :class="{selected, vertical}"
     @click="onClick"
+    :data-name="name"
   >
     <slot></slot>
   </div>
