@@ -16,7 +16,10 @@ module.exports = function (config) {
 
     reporters: ['spec'],
     autoWatch: true,
-
+    captureTimeout: 60000,
+    browserDisconnectTimeout: 10000,  // 默认2000
+    browserDisconnectTolerance: 1,  // 默认0
+    browserNoActivityTimeout: 10000000, // 默认10000
     browsers: ['ChromeHeadless']
   })
 }
