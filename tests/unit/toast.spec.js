@@ -64,15 +64,15 @@ describe('Toast', () => {
       expect(callback).to.have.been.called
     })
     xit('可以设置 enableHtml.', () => {
-      const wrapper = mount(Toast, {
-        slots: {
-          default: {template: '<b id="test">test</b>'},
-          // content: '<div>popover content</div>'
-        },
-        propsData: {
-          enableHtml: true
-        }
-      })
+      // const wrapper = mount(Toast, {
+      //   slots: {
+      //     default: {template: '<b id="test">test</b>'},
+      //     // content: '<div>popover content</div>'
+      //   },
+      //   propsData: {
+      //     enableHtml: true
+      //   }
+      // })
       // const Constructor = Vue.extend(Toast)
       // const vm = new Constructor({
       //   propsData: {
