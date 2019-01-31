@@ -14,12 +14,14 @@ export default function validate(data, rules) {
     let validators = Object.keys(rule).filter(key => key !== 'key' && key !== 'required')
     // 调用相应的验证
     validators.forEach(validatorsKey => {
-      if (rule[validatorsKey]) {
+      if (validate[validatorsKey]) {
         let error = validate[validatorsKey](value, rule[validatorsKey])
         if (error) {
           ensureObject(errors, rule.key)
           errors[rule.key][validatorsKey] = error
         }
+      } else {
+        throw `不存在的校验器：${validatorsKey}`
       }
     })
   })
@@ -42,6 +44,11 @@ validate.pattern = (value, pattern) => {
 validate.minLength = (value, minLength) => {
   if (value.length < minLength) {
     return '长度不够'
+  }
+}
+validate.maxLength = (value, maxLength) => {
+  if (value.length > maxLength) {
+    return '长度过长'
   }
 }
 
