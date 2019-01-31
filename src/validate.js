@@ -10,20 +10,18 @@ export default function validate(data, rules) {
         return
       }
     }
-    if (rule.pattern) {
-      let error = validate.pattern(value, rule.pattern)
-      if (error) {
-        ensureObject(errors, rule.key)
-        errors[rule.key].pattern = error
+    // 获得所有验证规则
+    let validators = Object.keys(rule).filter(key => key !== 'key' && key !== 'required')
+    // 调用相应的验证
+    validators.forEach(validatorsKey => {
+      if (rule[validatorsKey]) {
+        let error = validate[validatorsKey](value, rule[validatorsKey])
+        if (error) {
+          ensureObject(errors, rule.key)
+          errors[rule.key][validatorsKey] = error
+        }
       }
-    }
-    if (rule.minLength) {
-      let error = validate.minLength(value, rule.minLength)
-      if (error) {
-        ensureObject(errors, rule.key)
-        errors[rule.key].minLength = error
-      }
-    }
+    })
   })
   return errors
 }
