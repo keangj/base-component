@@ -3,29 +3,50 @@ export default function validate(data, rules) {
   rules.forEach(rule => {
     let value = data[rule.key]
     if (rule.required) {
-      if (!value && value !== 0) {
-        errors[rule.key] = { required: '必填' }
+      let error = validate.required(value)
+      if (error) {
+        ensureObject(errors, rule.key)
+        errors[rule.key].required = error
         return
       }
     }
     if (rule.pattern) {
-      if (rule.pattern === 'email') {
-        rule.pattern = /^.+@.+$/
-      }
-      if (rule.pattern.test(value) === false) {
+      let error = validate.pattern(value, rule.pattern)
+      if (error) {
         ensureObject(errors, rule.key)
-        errors[rule.key].pattern = '格式错误'
+        errors[rule.key].pattern = error
       }
     }
     if (rule.minLength) {
-      if (value.length < rule.minLength) {
+      let error = validate.minLength(value, rule.minLength)
+      if (error) {
         ensureObject(errors, rule.key)
-        errors[rule.key].minLength = '长度不够'
+        errors[rule.key].minLength = error
       }
     }
   })
   return errors
 }
+
+validate.required = (value) => {
+  if (!value && value !== 0) {
+    return '必填'
+  }
+}
+validate.pattern = (value, pattern) => {
+  if (pattern === 'email') {
+    pattern = /^.+@.+$/
+  }
+  if (pattern.test(value) === false) {
+    return '格式错误'
+  }
+}
+validate.minLength = (value, minLength) => {
+  if (value.length < minLength) {
+    return '长度不够'
+  }
+}
+
 
 function ensureObject (obj, key) {
   if (typeof obj[key] !== 'object') {

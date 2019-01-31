@@ -17,6 +17,7 @@ describe('validate', () => {
       }
     ]
     let errors = validate(data, rules)
+    console.log(errors)
     expect(errors.email.required).to.eq('必填')
   })
   it('required 为 true 通过', () => {
@@ -115,7 +116,6 @@ describe('validate', () => {
       }
     ]
     let errors = validate(data, rules)
-    console.log(errors)
     expect(errors.email.minLength).to.eq('长度不够')
     expect(errors.email.pattern).to.eq('格式错误')
   })
@@ -137,7 +137,6 @@ describe('validate', () => {
       }
     ]
     let errors = validate(data, rules)
-    console.log(errors)
     expect(errors.email.required).to.eq('必填')
   })
 })
