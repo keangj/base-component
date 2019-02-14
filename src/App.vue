@@ -1,5 +1,12 @@
 <template>
   <div id="app" style="padding: 100px;">
+    <b-button>默认按钮</b-button>
+    <b-button icon="settings">带icon的按钮</b-button>
+    <b-button :loading="true">带loading的按钮</b-button>
+    <b-button disabled>禁用按钮</b-button>
+    <b-input value="中文"></b-input>
+    <b-input value="中文" disabled></b-input>
+    <b-input value="中文" readonly></b-input>
     <b-nav :selected.sync="selected" vertical>
       <b-nav-item name="1">aaa</b-nav-item>
         <b-sub-nav name="a">
@@ -54,7 +61,7 @@
 import Button from './button/button'
 // import Icon from './icon'
 // import ButtonGroup from './button-group'
-// import Input from './input'
+import Input from './input'
 // import Col from './col'
 // import Row from './row'
 // import Layout from './layout'
@@ -97,6 +104,7 @@ export default {
   name: 'app',
   components: {
     'b-button': Button,
+    'b-input': Input,
     'b-cascader': Cascader,
     'b-slides': Slides,
     'b-slides-item': SlidesItem,

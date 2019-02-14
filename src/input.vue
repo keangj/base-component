@@ -58,7 +58,7 @@
     > input {
       border: 1px solid $border-color;
       border-radius: $border-radius;
-      padding: 9px 8px;
+      padding: 0 8px;
       height: $height;
       &:hover {
         border-color: $border-color-hover;
@@ -67,11 +67,16 @@
         box-shadow: inset 0 0 1px .3px $box-shadow-color;
         outline: none;
       }
-      &[disabled], &[readonly] {
+      &[disabled] {
         border-color: #aaa;
         background-color: #EBEEF5;
         color: #aaa;
         cursor: not-allowed;
+      }
+      &[readonly] {
+        color: $disabled-color;
+        cursor: not-allowed;
+        border-color: $disabled-color;
       }
     }
     &.error {

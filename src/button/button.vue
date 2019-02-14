@@ -94,5 +94,11 @@
     .loading {
       animation: spin .8s infinite linear;
     }
+    &[disabled] {
+      border-color: #aaa;
+      background-color: #EBEEF5;
+      color: #aaa;
+      cursor: not-allowed;
+    }
   }
 </style>
