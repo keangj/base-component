@@ -213,7 +213,7 @@ describe('Validator', () => {
     expect(fn1).to.not.throw()
     expect(fn2).to.throw()
   })
-  it('xxx', () => {
+  it('添加全局规则', () => {
     let data = {
       email: 'abc'
     }
