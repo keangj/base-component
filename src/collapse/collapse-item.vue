@@ -1,7 +1,7 @@
 <template>
   <div class="collapse-item">
     <div class="title" @click="toggle">
-      {{title}} {{accordion}}
+      {{title}}
     </div>
     <div class="content" v-if="open">
       <slot></slot>
@@ -19,7 +19,8 @@
         required: true
       },
       name: {
-        type: String
+        type: String,
+        required: true
       }
     },
     data () {
@@ -46,7 +47,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "var";
+  @import "../var";
 
   .collapse-item {
     > :first-child {

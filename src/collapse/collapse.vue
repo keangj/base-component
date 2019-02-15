@@ -35,6 +35,7 @@
         if (this.accordion) {
           selectedCopy = [name]
         } else {
+      console.log(this.accordion)
           selectedCopy.push(name)
         }
         this.eventBus.$emit('update:selected', selectedCopy)
@@ -52,7 +53,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "var";
+  @import "../var";
 
   .collapse {
     border: 1px solid $border-color;

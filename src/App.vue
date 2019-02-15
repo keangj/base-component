@@ -1,59 +1,58 @@
 <template>
   <div id="app" style="padding: 100px;">
-    <b-button>默认按钮</b-button>
-    <b-button icon="settings">带icon的按钮</b-button>
-    <b-button :loading="true">带loading的按钮</b-button>
-    <b-button disabled>禁用按钮</b-button>
-    <b-input value="中文"></b-input>
-    <b-input value="中文" disabled></b-input>
-    <b-input value="中文" readonly></b-input>
-    <b-nav :selected.sync="selected" vertical>
-      <b-nav-item name="1">aaa</b-nav-item>
-        <b-sub-nav name="a">
-          <template slot="title">111</template>
-          <b-nav-item name="a1">111</b-nav-item>
-          <b-nav-item name="a2">111</b-nav-item>
-          <b-nav-item name="a3">111</b-nav-item>
-          <b-sub-nav name="b">
-            <template slot="title">222</template>
-            <b-nav-item name="b1">222</b-nav-item>
-            <b-nav-item name="b2">222</b-nav-item>
-            <b-nav-item name="b3">222</b-nav-item>
-            <b-sub-nav name="c">
-              <template slot="title">333</template>
-              <b-nav-item name="c1">333</b-nav-item>
-              <b-nav-item name="c2">333</b-nav-item>
-              <b-nav-item name="c3">333</b-nav-item>
-            </b-sub-nav>
-          </b-sub-nav>
-        </b-sub-nav>
-      <b-nav-item name="3">ccc</b-nav-item>
-      <b-nav-item name="4">ddd</b-nav-item>
-    </b-nav>
-    <b-nav :selected.sync="selected">
-      <b-nav-item name="1"><a href="//baidu.com" target="_blank">aaa</a></b-nav-item>
-        <b-sub-nav name="a">
-          <template slot="title">111</template>
-          <b-nav-item name="a1">111</b-nav-item>
-          <b-nav-item name="a2">111</b-nav-item>
-          <b-nav-item name="a3">111</b-nav-item>
-          <b-sub-nav name="b">
-            <template slot="title">222</template>
-            <b-nav-item name="b1">222</b-nav-item>
-            <b-nav-item name="b2">222</b-nav-item>
-            <b-nav-item name="b3">222</b-nav-item>
-            <b-sub-nav name="c">
-              <template slot="title">333</template>
-              <b-nav-item name="c1">333</b-nav-item>
-              <b-nav-item name="c2">333</b-nav-item>
-              <b-nav-item name="c3">333</b-nav-item>
-            </b-sub-nav>
-          </b-sub-nav>
-        </b-sub-nav>
-      <b-nav-item name="3">ccc</b-nav-item>
-      <b-nav-item name="4">ddd</b-nav-item>
-    </b-nav>
-    {{selected}}
+    <b-collapse :selected.sync=x accordion>
+      <b-collapse-item title="标题1" name="1">内容1</b-collapse-item>
+      <b-collapse-item title="标题2" name="2">内容2</b-collapse-item>
+      <b-collapse-item title="标题3" name="3">内容3</b-collapse-item>
+      <b-collapse-item title="标题4" name="4">内容4</b-collapse-item>
+    </b-collapse>
+    {{x}}
+    <!--<b-nav :selected.sync="selected" vertical>-->
+      <!--<b-nav-item name="1">aaa</b-nav-item>-->
+        <!--<b-sub-nav name="a">-->
+          <!--<template slot="title">111</template>-->
+          <!--<b-nav-item name="a1">111</b-nav-item>-->
+          <!--<b-nav-item name="a2">111</b-nav-item>-->
+          <!--<b-nav-item name="a3">111</b-nav-item>-->
+          <!--<b-sub-nav name="b">-->
+            <!--<template slot="title">222</template>-->
+            <!--<b-nav-item name="b1">222</b-nav-item>-->
+            <!--<b-nav-item name="b2">222</b-nav-item>-->
+            <!--<b-nav-item name="b3">222</b-nav-item>-->
+            <!--<b-sub-nav name="c">-->
+              <!--<template slot="title">333</template>-->
+              <!--<b-nav-item name="c1">333</b-nav-item>-->
+              <!--<b-nav-item name="c2">333</b-nav-item>-->
+              <!--<b-nav-item name="c3">333</b-nav-item>-->
+            <!--</b-sub-nav>-->
+          <!--</b-sub-nav>-->
+        <!--</b-sub-nav>-->
+      <!--<b-nav-item name="3">ccc</b-nav-item>-->
+      <!--<b-nav-item name="4">ddd</b-nav-item>-->
+    <!--</b-nav>-->
+    <!--<b-nav :selected.sync="selected">-->
+      <!--<b-nav-item name="1"><a href="//baidu.com" target="_blank">aaa</a></b-nav-item>-->
+        <!--<b-sub-nav name="a">-->
+          <!--<template slot="title">111</template>-->
+          <!--<b-nav-item name="a1">111</b-nav-item>-->
+          <!--<b-nav-item name="a2">111</b-nav-item>-->
+          <!--<b-nav-item name="a3">111</b-nav-item>-->
+          <!--<b-sub-nav name="b">-->
+            <!--<template slot="title">222</template>-->
+            <!--<b-nav-item name="b1">222</b-nav-item>-->
+            <!--<b-nav-item name="b2">222</b-nav-item>-->
+            <!--<b-nav-item name="b3">222</b-nav-item>-->
+            <!--<b-sub-nav name="c">-->
+              <!--<template slot="title">333</template>-->
+              <!--<b-nav-item name="c1">333</b-nav-item>-->
+              <!--<b-nav-item name="c2">333</b-nav-item>-->
+              <!--<b-nav-item name="c3">333</b-nav-item>-->
+            <!--</b-sub-nav>-->
+          <!--</b-sub-nav>-->
+        <!--</b-sub-nav>-->
+      <!--<b-nav-item name="3">ccc</b-nav-item>-->
+      <!--<b-nav-item name="4">ddd</b-nav-item>-->
+    <!--</b-nav>-->
   </div>
 </template>
 
@@ -77,8 +76,8 @@ import Input from './input'
 // import TabsItem from './tabs-item'
 // import TabsPane from './tabs-pane'
 // import Popover from './popover'
-// import Collapse from './collapse'
-// import CollapseItem from './collapse-item'
+import Collapse from './collapse/collapse'
+import CollapseItem from './collapse/collapse-item'
 import Cascader from './cascader/cascader'
 // import CascaderItem from './cascader-items'
 import db from '../tests/fixtures/db'
@@ -111,11 +110,14 @@ export default {
     'b-nav': Nav,
     'b-sub-nav': SubNav,
     'b-nav-item': NavItem,
+    'b-collapse': Collapse,
+    'b-collapse-item': CollapseItem,
   },
   data () {
     return {
       selected: ['a'],
-      source: null
+      source: null,
+      x: ['2','3']
     }
   },
   mounted () {
