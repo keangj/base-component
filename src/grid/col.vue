@@ -4,7 +4,7 @@
     :class="colClass"
     :style="colStyle"
   >
-    <div style="background-color: #eee;border: 1px solid #aaa;">
+    <div>
       <slot></slot>
     </div>
   </div>

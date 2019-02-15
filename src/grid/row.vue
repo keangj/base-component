@@ -1,5 +1,5 @@
 <template>
-  <div class="row"
+  <div class="b-row"
        :class="rowClass"
        :style="rowStyle"
   >
@@ -43,7 +43,7 @@
 </script>
 
 <style lang="scss" scoped>
-.row {
+.b-row {
   display: flex;
   flex-wrap: wrap;
   &.align-left {
