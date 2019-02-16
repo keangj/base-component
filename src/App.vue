@@ -1,12 +1,31 @@
 <template>
   <div id="app" style="padding: 100px;">
-    <b-collapse :selected.sync=x accordion>
-      <b-collapse-item title="标题1" name="1">内容1</b-collapse-item>
-      <b-collapse-item title="标题2" name="2">内容2</b-collapse-item>
-      <b-collapse-item title="标题3" name="3">内容3</b-collapse-item>
-      <b-collapse-item title="标题4" name="4">内容4</b-collapse-item>
-    </b-collapse>
-    {{x}}
+    <div style="margin: 50px">
+      <b-popover trigger="hover">
+        <b-button>上方弹出</b-button>
+        <template slot="content">
+          弹出内容
+        </template>
+      </b-popover>
+    </div>
+    <b-popover position="bottom" trigger="hover">
+      <b-button>下方弹出</b-button>
+      <template slot="content">
+        弹出内容
+      </template>
+    </b-popover>
+    <b-popover position="left" trigger="hover">
+      <b-button>左边弹出</b-button>
+      <template slot="content">
+        弹出内容
+      </template>
+    </b-popover>
+    <b-popover position="right" trigger="hover">
+      <b-button>右边弹出</b-button>
+      <template slot="content">
+        弹出内容
+      </template>
+    </b-popover>
     <!--<b-nav :selected.sync="selected" vertical>-->
       <!--<b-nav-item name="1">aaa</b-nav-item>-->
         <!--<b-sub-nav name="a">-->
@@ -61,8 +80,8 @@ import Button from './button/button'
 // import Icon from './icon'
 // import ButtonGroup from './button-group'
 import Input from './input'
-// import Col from './col'
-// import Row from './row'
+import Col from './grid/col'
+import Row from './grid/row'
 // import Layout from './layout'
 // import Content from './content'
 // import Header from './header'
@@ -75,7 +94,7 @@ import Input from './input'
 // import TabsBody from './tabs-body'
 // import TabsItem from './tabs-item'
 // import TabsPane from './tabs-pane'
-// import Popover from './popover'
+import Popover from './popover'
 import Collapse from './collapse/collapse'
 import CollapseItem from './collapse/collapse-item'
 import Cascader from './cascader/cascader'
@@ -108,10 +127,13 @@ export default {
     'b-slides': Slides,
     'b-slides-item': SlidesItem,
     'b-nav': Nav,
+    'b-col': Col,
+    'b-row': Row,
     'b-sub-nav': SubNav,
     'b-nav-item': NavItem,
     'b-collapse': Collapse,
     'b-collapse-item': CollapseItem,
+    'b-popover': Popover,
   },
   data () {
     return {

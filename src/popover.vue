@@ -64,19 +64,19 @@
         let positions = {
           top: {
             top: window.scrollY + top,
-            left: window.scrollY + left
+            left: window.scrollX + left
           },
           bottom: {
             top: window.scrollY + bottom,
-            left: window.scrollY + left
+            left: window.scrollX + left
           },
           left: {
             top: window.scrollY + top - (contentWrapperHeight - height) / 2,
-            left: window.scrollY + left
+            left: window.scrollX + left
           },
           right: {
             top: window.scrollY + top - (contentWrapperHeight - height) / 2,
-            left: window.scrollY + left + width
+            left: window.scrollX + left + width
           },
         }
         // 设置内容区域的位置
@@ -94,7 +94,6 @@
       },
       close () {
         this.visible = false
-        console.log('移除监听')
         document.removeEventListener('click', this.elementHandler)
       },
       open () {
