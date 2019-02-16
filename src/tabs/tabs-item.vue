@@ -65,13 +65,13 @@
       color: $color;
       fill: $color;
     }
+    &:not(.disabled):hover {
+      color: $color;
+    }
     &.disabled {
       color: $disabled-color;
       fill: $disabled-color;
       cursor: not-allowed;
-    }
-    &:hover {
-      color: $color;
     }
   }
 </style>

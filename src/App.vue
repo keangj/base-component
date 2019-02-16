@@ -2,12 +2,14 @@
   <div id="app" style="padding: 100px;">
     <b-tabs selected="2">
       <b-tabs-head>
-        <b-tabs-item name="1">1</b-tabs-item>
-        <b-tabs-item name="2">2</b-tabs-item>
+        <b-tabs-item name="1">标签1</b-tabs-item>
+        <b-tabs-item name="2">标签2</b-tabs-item>
+        <b-tabs-item name="3">标签3</b-tabs-item>
       </b-tabs-head>
       <b-tabs-body>
-        <b-tabs-pane name="1">content 1</b-tabs-pane>
-        <b-tabs-pane name="2">content 2</b-tabs-pane>
+        <b-tabs-pane name="1">内容1</b-tabs-pane>
+        <b-tabs-pane name="2">内容2</b-tabs-pane>
+        <b-tabs-pane name="3">内容3</b-tabs-pane>
       </b-tabs-body>
     </b-tabs>
     <!--<b-nav :selected.sync="selected" vertical>-->
