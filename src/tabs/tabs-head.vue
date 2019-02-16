@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-head">
+  <div class="tabs-head" ref="head">
     <slot></slot>
     <div class="line" ref="line"></div>
     <div class="actions-wrapper">
@@ -15,15 +15,16 @@
     mounted () {
       this.eventBus.$on('update:selected', (name, vm) => {
         let {width, left} = vm.$el.getBoundingClientRect()
+        let {left: headLeft} = this.$refs.head.getBoundingClientRect()
         this.$refs.line.style.width = width + 'px'
-        this.$refs.line.style.left = left + 'px'
+        this.$refs.line.style.left = `${left - headLeft}px`
       })
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  @import "var";
+  @import "../var";
 
   .tabs-head {
     position: relative;
@@ -32,16 +33,18 @@
     align-items: center;
     border-bottom: 1px solid #eee;
     height: $tabs-height;
-    > .actions-wrapper {
-      margin-left: auto;
-      margin-right: 1em;
-    }
     > .line {
       position: absolute;
       bottom: 0;
       border-bottom: 2px solid $color;
-      width: 100px;
       transition: all 300ms;
+    }
+    > .actions-wrapper {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1em;
     }
   }
 </style>

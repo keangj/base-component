@@ -1,31 +1,15 @@
 <template>
   <div id="app" style="padding: 100px;">
-    <div style="margin: 50px">
-      <b-popover trigger="hover">
-        <b-button>上方弹出</b-button>
-        <template slot="content">
-          弹出内容
-        </template>
-      </b-popover>
-    </div>
-    <b-popover position="bottom" trigger="hover">
-      <b-button>下方弹出</b-button>
-      <template slot="content">
-        弹出内容
-      </template>
-    </b-popover>
-    <b-popover position="left" trigger="hover">
-      <b-button>左边弹出</b-button>
-      <template slot="content">
-        弹出内容
-      </template>
-    </b-popover>
-    <b-popover position="right" trigger="hover">
-      <b-button>右边弹出</b-button>
-      <template slot="content">
-        弹出内容
-      </template>
-    </b-popover>
+    <b-tabs selected="2">
+      <b-tabs-head>
+        <b-tabs-item name="1">1</b-tabs-item>
+        <b-tabs-item name="2">2</b-tabs-item>
+      </b-tabs-head>
+      <b-tabs-body>
+        <b-tabs-pane name="1">content 1</b-tabs-pane>
+        <b-tabs-pane name="2">content 2</b-tabs-pane>
+      </b-tabs-body>
+    </b-tabs>
     <!--<b-nav :selected.sync="selected" vertical>-->
       <!--<b-nav-item name="1">aaa</b-nav-item>-->
         <!--<b-sub-nav name="a">-->
@@ -89,11 +73,11 @@ import Row from './grid/row'
 // import sider from './sider'
 // import Toast from './toast'
 // import plugin from './plugin'
-// import Tabs from './tabs'
-// import TabsHead from './tabs-head'
-// import TabsBody from './tabs-body'
-// import TabsItem from './tabs-item'
-// import TabsPane from './tabs-pane'
+import Tabs from './tabs/tabs'
+import TabsHead from './tabs/tabs-head'
+import TabsBody from './tabs/tabs-body'
+import TabsItem from './tabs/tabs-item'
+import TabsPane from './tabs/tabs-pane'
 import Popover from './popover'
 import Collapse from './collapse/collapse'
 import CollapseItem from './collapse/collapse-item'
@@ -134,6 +118,11 @@ export default {
     'b-collapse': Collapse,
     'b-collapse-item': CollapseItem,
     'b-popover': Popover,
+    'b-tabs': Tabs,
+    'b-tabs-head': TabsHead,
+    'b-tabs-item': TabsItem,
+    'b-tabs-pane': TabsPane,
+    'b-tabs-body': TabsBody,
   },
   data () {
     return {

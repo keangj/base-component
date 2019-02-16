@@ -50,7 +50,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "var";
+  @import "../var";
 
   .tabs-item {
     display: flex;
@@ -69,6 +69,9 @@
       color: $disabled-color;
       fill: $disabled-color;
       cursor: not-allowed;
+    }
+    &:hover {
+      color: $color;
     }
   }
 </style>
