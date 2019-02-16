@@ -1,8 +1,8 @@
 ---
-title: input
+title: Input
 sidebarDepth: 2
 ---
-# input
+# Input
 <ClientOnly>
-<input-demos></input-demos>
+<input-demo></input-demo>
 </ClientOnly>
