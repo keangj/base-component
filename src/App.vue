@@ -1,17 +1,8 @@
 <template>
   <div id="app" style="padding: 100px;">
-    <b-tabs selected="2">
-      <b-tabs-head>
-        <b-tabs-item name="1">标签1</b-tabs-item>
-        <b-tabs-item name="2">标签2</b-tabs-item>
-        <b-tabs-item name="3">标签3</b-tabs-item>
-      </b-tabs-head>
-      <b-tabs-body>
-        <b-tabs-pane name="1">内容1</b-tabs-pane>
-        <b-tabs-pane name="2">内容2</b-tabs-pane>
-        <b-tabs-pane name="3">内容3</b-tabs-pane>
-      </b-tabs-body>
-    </b-tabs>
+    <b-button @click="$toast('点击弹出提示')">上方弹出</b-button>
+    <b-button @click="$toast('点击弹出提示', {position:'middle'})">中间弹出</b-button>
+    <b-button @click="$toast('点击弹出提示', {position:'bottom'})">下方弹出</b-button>
     <!--<b-nav :selected.sync="selected" vertical>-->
       <!--<b-nav-item name="1">aaa</b-nav-item>-->
         <!--<b-sub-nav name="a">-->
@@ -74,7 +65,7 @@ import Row from './grid/row'
 // import Footer from './footer'
 // import sider from './sider'
 // import Toast from './toast'
-// import plugin from './plugin'
+import plugin from './plugin'
 import Tabs from './tabs/tabs'
 import TabsHead from './tabs/tabs-head'
 import TabsBody from './tabs/tabs-body'
@@ -91,6 +82,8 @@ import SlidesItem from './slides/slides-item'
 import Nav from './nav/nav'
 import SubNav from './nav/sub-nav'
 import NavItem from './nav/nav-item'
+import Vue from 'vue'
+Vue.use(plugin)
 
 function ajax (parentId = 0) {
   return new Promise((resolve) => {

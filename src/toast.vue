@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" :class="toastClasses">
+  <div class="b-toast" :class="toastClasses">
     <div class="toast" ref="toast">
       <div class="message">
         <div v-if="enableHtml" v-html="$slots.default[0]"></div>
@@ -99,7 +99,7 @@
   0%{opacity: 0; transform: translateX(-50%) translateY(100%);}
   100%{opacity: 1; transform: translateX(-50%) translateY(0%);}
 }
-.wrapper {
+.b-toast {
   position: fixed;
   left: 50%;
   &.position-top {
