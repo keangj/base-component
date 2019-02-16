@@ -1,9 +1,18 @@
 <template>
-  <transition name="slide">
-    <div class="b-slides-item" v-if="visible" :class="{reverse}">
-      <slot></slot>
-    </div>
-  </transition>
+  <div>
+    <template v-if="animationEnabled">
+      <transition name="slide">
+        <div class="b-slides-item" v-if="visible" :class="{reverse}">
+          <slot></slot>
+        </div>
+      </transition>
+    </template>
+    <template v-else>
+      <div class="b-slides-item" v-if="visible" :class="{reverse}">
+        <slot></slot>
+      </div>
+    </template>
+  </div>
 </template>
 
 <script>
@@ -16,7 +25,11 @@
       return {
         selected: undefined,
         reverse: false,
+        animationEnabled: false
       }
+    },
+    updated() {
+      this.animationEnabled = true
     },
     computed: {
       visible () {
@@ -35,7 +48,7 @@
     height: 100%;
   }
   .slide-enter-active, .slide-leave-active {
-    transition: all 1s;
+    transition: all .5s;
   }
   .slide-enter {
     transform: translateX(100%);
