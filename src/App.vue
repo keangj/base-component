@@ -1,8 +1,11 @@
 <template>
   <div id="app" style="padding: 100px;">
-    <b-button @click="$toast('点击弹出提示')">上方弹出</b-button>
-    <b-button @click="$toast('点击弹出提示', {position:'middle'})">中间弹出</b-button>
-    <b-button @click="$toast('点击弹出提示', {position:'bottom'})">下方弹出</b-button>
+    <b-upload accept="image/*" action="http://127.0.0.1:3000/upload" name="file" :file-list="fileList">
+      <b-button>上传</b-button>
+    </b-upload>
+<!--    <b-button @click="$toast('点击弹出提示')">上方弹出</b-button>-->
+<!--    <b-button @click="$toast('点击弹出提示', {position:'middle'})">中间弹出</b-button>-->
+<!--    <b-button @click="$toast('点击弹出提示', {position:'bottom'})">下方弹出</b-button>-->
     <!--<b-nav :selected.sync="selected" vertical>-->
       <!--<b-nav-item name="1">aaa</b-nav-item>-->
         <!--<b-sub-nav name="a">-->
@@ -54,6 +57,7 @@
 
 <script>
 import Button from './button/button'
+import Upload from './upload'
 // import Icon from './icon'
 // import ButtonGroup from './button-group'
 import Input from './input'
@@ -118,12 +122,14 @@ export default {
     'b-tabs-item': TabsItem,
     'b-tabs-pane': TabsPane,
     'b-tabs-body': TabsBody,
+    'b-upload': Upload,
   },
   data () {
     return {
       selected: ['a'],
       source: null,
-      x: ['2','3']
+      x: ['2','3'],
+        fileList: []
     }
   },
   mounted () {
