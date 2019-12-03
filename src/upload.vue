@@ -1,10 +1,11 @@
 <template>
     <div class="b-upload" ref="upload">
         <div @click="onClickUpload">
-            <slot></slot>
+            <slot/>
         </div>
-        <div v-for="item in fileList">
-            <img src="item.url" alt="">
+        <slot name="tips"/>
+        <div v-for="(item, index) in fileList">
+            <img :src="item.url" alt="" width="150"><span class="delete" @click="onRemoveFile(index)">X</span>
         </div>
     </div>
 </template>
@@ -32,9 +33,17 @@
                 type: String,
                 required: true
             },
+            method: {
+                type: String,
+                default: 'POST'
+            },
             fileList: {
                 type: Array,
                 default: () => []
+            },
+            onSuccess: {
+                type: Function,
+                required: true
             }
         },
         data () {
@@ -44,9 +53,9 @@
         },
         methods: {
             onClickUpload () {
-                this.createInput()
                 let input = this.createInput()
-                input.addEventListener('change', (e) => {
+                input.addEventListener('change', () => {
+                    console.log(input.files)
                     let file = input.files[0]
                     input.remove()
                     console.log(file)
@@ -57,7 +66,7 @@
             createInput () {
                 let input = document.createElement('input')
                 input.type = 'file'
-                input.style = 'width: 0; height: 0;'
+                input.style = 'display: none;'
                 input.multiple = this.multiple
                 this.$refs.upload.appendChild(input)
                 return input
@@ -69,17 +78,20 @@
                 formData.append(this.name, file)
                 let xhr = new XMLHttpRequest()
                 console.log(this.action)
-                xhr.open('POST', this.action)
-                xhr.onload = (res) => {
-                    console.log(JSON.parse(xhr.responseText))
-                    let { url, path } = JSON.parse(xhr.responseText)
-                    // this.fileList.push(res.data)
-                    console.log(path)
-                    this.$emit('update:fileList', [...this.fileList, { name, size, type, url, path }])
-                    console.log(this.fileList)
+                xhr.open(this.method, this.action)
+                xhr.onload = () => {
+                    let data = JSON.parse(xhr.responseText)
+                    let { path, filename } = data
+                    this.onSuccess(data)
+                    this.$emit('update:fileList', [...this.fileList, { name, filename, size, type, url: `http://localhost:3000/preview/${filename}`, path }])
                 }
                 xhr.send(formData)
 
+            },
+            onRemoveFile (index) {
+                let fileList = [...this.fileList]
+                fileList.splice(index, 1)
+                this.$emit('update:fileList', fileList)
             }
         }
     }

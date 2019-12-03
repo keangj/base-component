@@ -1,7 +1,13 @@
 <template>
   <div id="app" style="padding: 100px;">
-    <b-upload accept="image/*" action="http://127.0.0.1:3000/upload" name="file" :file-list="fileList">
+    <b-upload accept="image/*"
+              action="http://127.0.0.1:3000/upload"
+              name="file"
+              multiple
+              :on-success="onSuccess"
+              :file-list.sync="fileList">
       <b-button>上传</b-button>
+        <div slot="tips">tips</div>
     </b-upload>
 <!--    <b-button @click="$toast('点击弹出提示')">上方弹出</b-button>-->
 <!--    <b-button @click="$toast('点击弹出提示', {position:'middle'})">中间弹出</b-button>-->
@@ -192,6 +198,9 @@ export default {
     // ]
   },
   methods: {
+      onSuccess (res) {
+          console.log(res)
+      },
     loadData ({id}, updateSource) {
       ajax(id)
         .then(result => {
