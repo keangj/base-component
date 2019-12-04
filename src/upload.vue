@@ -5,7 +5,9 @@
         </div>
         <slot name="tips"/>
         <div v-for="(item, index) in fileList">
-            <img :src="item.url" alt="" width="150"><span class="delete" @click="onRemoveFile(index)">X</span>
+            <img :src="item.url" alt="" width="100">
+            <span>{{item.name}}</span>
+            <span class="delete" @click="onRemoveFile(index)">删除</span>
         </div>
     </div>
 </template>
@@ -64,6 +66,9 @@
                 input.click()
             },
             createInput () {
+                this.$refs.upload.childNodes.forEach(node => {
+                    node.nodeName === 'INPUT' && node.remove()
+                })
                 let input = document.createElement('input')
                 input.type = 'file'
                 input.style = 'display: none;'
